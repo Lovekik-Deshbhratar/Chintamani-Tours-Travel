@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#fd7e14",
+        secondary: "#FE9E4F",
       },
       fontFamily: {
         parisienne: ["Parisienne, cursive"],

@@ -78,7 +78,7 @@ const Navbar = () => {
           <NavLinks />
         </div>
         {isOpen && (
-          <div className="flex gap-5 md:flex-row flex-col md:hidden  items-center">
+          <div className="flex gap-5 md:flex-row flex-col md:hidden items-center w-full">
             <NavLinks />
           </div>
         )}

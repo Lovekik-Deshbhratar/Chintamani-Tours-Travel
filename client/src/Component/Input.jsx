@@ -1,38 +1,43 @@
 import React from "react";
-import { Search, MapPin } from "lucide-react";
+import { Search, MapPin, Calendar } from "lucide-react";
 
 const Input = () => {
   return (
-    <div className="space-y-2">
-      <div className="grid grid-cols-2 gap-2">
-        <div className="border">
-          <input
-            className="relative outline-none ring-1 ring-gray-400 p-1 w-full"
-            type="text"
-            placeholder="Where would you like to go?"
-          />
-          <MapPin className="absolute" />
+    <div className=" bg-white py-3 px-5 rounded-lg shadow-sm">
+      <div className="flex justify-between gap-14">
+        <div className="flex flex-col gap-4 flex-grow">
+          <div className="relative">
+            <MapPin className="absolute m-2 text-primary/70" />
+            <input
+              className="outline-none ring-1 ring-primary/40 py-2 pl-10 rounded w-full focus:placeholder:text-gray-500 placeholder:text-gray-400"
+              type="text"
+              placeholder="Where would you like to go?"
+            />
+          </div>
+          <div className="relative">
+            <Calendar className="absolute m-2 text-primary/70" />
+            <select className="text-gray-400 focus:text-gray-500 outline-none ring-1 ring-primary/40 py-2 pl-10 rounded w-full">
+              <option value="">Select a month</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
         </div>
-        <select className="outline-none">
-          <option value="">Select a month</option>
-          <option value="January">January</option>
-          <option value="February">February</option>
-          <option value="March">March</option>
-          <option value="April">April</option>
-          <option value="May">May</option>
-          <option value="June">June</option>
-          <option value="July">July</option>
-          <option value="August">August</option>
-          <option value="September">September</option>
-          <option value="October">October</option>
-          <option value="November">November</option>
-          <option value="December">December</option>
-        </select>
-      </div>
-      <div className="flex justify-center">
-        <button className="bg-primary p-2">
-          <Search color="white" size={25} />
-        </button>
+        <div className="flex items-center">
+          <button className="bg-secondary p-3 rounded-tl-xl rounded-br-xl rounded-tr-md rounded-bl-md">
+            <Search color="white" />
+          </button>
+        </div>
       </div>
     </div>
   );
