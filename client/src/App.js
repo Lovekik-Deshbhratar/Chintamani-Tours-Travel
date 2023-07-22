@@ -8,7 +8,7 @@ import Navbar from "./Component/Navbar";
 
 function App() {
   return (
-    <div className="w-full">
+    <div className="w-full space-y-3">
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Landing />} />

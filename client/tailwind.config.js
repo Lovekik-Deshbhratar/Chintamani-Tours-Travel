@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         primary: "#fd7e14",
       },
+      fontFamily: {
+        parisienne: ["Parisienne, cursive"],
+      },
     },
   },
   plugins: [],
