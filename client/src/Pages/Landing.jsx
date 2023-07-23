@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../Component/Input";
 import Services from "../Component/Services";
+import Card from "../Component/Card";
 
 const Landing = () => {
   return (
@@ -42,6 +43,7 @@ const Landing = () => {
       </div>
       <Input />
       <Services />
+      <Card />
     </div>
   );
 };

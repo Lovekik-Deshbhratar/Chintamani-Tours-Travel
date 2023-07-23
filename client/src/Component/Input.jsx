@@ -34,7 +34,7 @@ const Input = () => {
           </div>
         </div>
         <div className="flex items-center">
-          <button className="bg-secondary p-3 rounded-tl-xl rounded-br-xl rounded-tr-md rounded-bl-md hover:rounded-tl-md hover:rounded-br-md hover:rounded-tr-xl hover:rounded-bl-xl transition-all duration-500  hover:bg-primary ease-in-out">
+          <button className="bg-secondary p-3 rounded-tl-xl rounded-br-xl rounded-tr-md rounded-bl-md hover:rounded-tl-md hover:rounded-br-md hover:rounded-tr-xl hover:rounded-bl-xl transition-all duration-300  hover:bg-primary ease-in-out active:bg-[#fec595]">
             <Search color="white" />
           </button>
         </div>

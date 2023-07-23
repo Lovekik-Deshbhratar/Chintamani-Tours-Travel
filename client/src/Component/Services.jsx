@@ -28,8 +28,8 @@ const Services = () => {
       <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
         what we server
       </h1>
-      <div className="md:flex md:space-x-20">
-        <span className="hidden md:flex md:font-semibold md:text-4xl md:capitalize">
+      <div className="md:flex md:space-x-20 space-y-6 md:space-y-0">
+        <span className="md:flex font-semibold text-3xl md:text-4xl capitalize">
           we offer our best services
         </span>
         <div className="space-y-7 md:grid md:grid-cols-3 md:space-y-0 md:gap-6">
