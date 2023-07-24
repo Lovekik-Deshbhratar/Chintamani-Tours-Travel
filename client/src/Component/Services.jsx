@@ -26,13 +26,13 @@ const Services = () => {
   return (
     <div className="py-3 space-y-5">
       <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
-        what we server
+        what we serve
       </h1>
-      <div className="md:flex md:space-x-20 space-y-6 md:space-y-0">
-        <span className="md:flex font-semibold text-3xl md:text-4xl capitalize">
+      <div className="md:flex md:flex-col lg::flex lg:flex-row xl:space-x-17 space-y-6 lg:space-y-0">
+        <span className="md:flex font-semibold text-3xl md:text-4xl capitalize ">
           we offer our best services
         </span>
-        <div className="space-y-7 md:grid md:grid-cols-3 md:space-y-0 md:gap-6">
+        <div className="space-y-7 grid grid-cols-1 md:grid-cols-3 md:space-y-0 md:gap-3 xl:gap-6 md:w-fit">
           {services.map((item, key) => {
             return (
               <div

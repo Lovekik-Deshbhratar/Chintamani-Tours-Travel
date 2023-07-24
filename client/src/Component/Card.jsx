@@ -61,7 +61,7 @@ const Card = () => {
       <h1 className="font-semibold text-3xl md:text-4xl capitalize mt-3">
         our upcoming tours
       </h1>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-4 mt-10">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10">
         {card.map((item, key) => (
           <div
             className="space-y-2 bg-white rounded-lg overflow-hidden shadow-2xl ring-1 ring-primary/10"
@@ -84,7 +84,7 @@ const Card = () => {
                 {item.title}
               </h1>
               <div className="flex justify-end">
-                <button className="bg-secondary p-3 text-white text-sm rounded-lg font-semibold hover:bg-primary transition ease-in-out duration-300 active:bg-[#fec595]">
+                <button className="bg-secondary p-3 text-white text-sm rounded-lg font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]">
                   Download Quote
                 </button>
               </div>
