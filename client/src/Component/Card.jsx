@@ -7,48 +7,56 @@ const card = [
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
   {
     img: "/Asset/img1.jpg",
     location: "Nepal",
     date: "Oct 25 2023",
     title: "Nepal Darshan",
+    price: 25000,
   },
 ];
 
@@ -67,8 +75,11 @@ const Card = () => {
             className="space-y-2 bg-white rounded-lg overflow-hidden shadow-2xl ring-1 ring-primary/10"
             key={key}
           >
-            <div className="object-cover">
+            <div className="object-cover relative">
               <img src={item.img} alt="" />
+              <button className="absolute right-0 bottom-0 bg-secondary p-2 h-fit text-white text-xs mb-1 font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[1.1]">
+                Download Quote
+              </button>
             </div>
             <div className="space-y-5 p-5">
               <div className="flex justify-between">
@@ -83,9 +94,20 @@ const Card = () => {
               <h1 className="text-gray-800 text-xl font-semibold">
                 {item.title}
               </h1>
-              <div className="flex justify-end">
-                <button className="bg-secondary p-3 text-white text-sm rounded-lg font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]">
-                  Download Quote
+              <div className="flex justify-between">
+                <div className="flex items-center">
+                  <span>
+                    <span className="text-secondary font-bold">
+                      Rs. {item.price}
+                    </span>{" "}
+                    <span className="text-gray-600 font-semibold text-sm">
+                      /per person
+                    </span>
+                  </span>
+                </div>
+
+                <button className="bg-secondary p-2 text-white text-sm rounded-lg font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]">
+                  Book Now
                 </button>
               </div>
             </div>

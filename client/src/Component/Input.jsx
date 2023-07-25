@@ -9,7 +9,7 @@ const Input = () => {
           <div className="relative md:w-full">
             <MapPin className="absolute ml-0.5 my-2 md:m-2 text-primary/70" />
             <input
-              className="outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10 rounded w-full text-gray-500 focus:placeholder:text-gray-500 placeholder:text-gray-400"
+              className="caret-secondary outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10 rounded w-full text-gray-500 focus:placeholder:text-gray-500 placeholder:text-gray-400"
               type="text"
               placeholder="Where would you like to go?"
             />
@@ -17,7 +17,9 @@ const Input = () => {
           <div className="relative md:w-full">
             <Calendar className="absolute ml-0.5 my-2 md:m-2 text-primary/70" />
             <select className="text-gray-400 focus:text-gray-500 outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10  rounded w-full">
-              <option value="">Select a month</option>
+              <option value="" hidden>
+                Select a month
+              </option>
               <option value="January">January</option>
               <option value="February">February</option>
               <option value="March">March</option>
