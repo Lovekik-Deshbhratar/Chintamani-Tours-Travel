@@ -5,6 +5,7 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Tours from "./Pages/Tours";
 import Navbar from "./Component/Navbar";
+import Footer from "./Component/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Landing />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
