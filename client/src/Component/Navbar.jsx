@@ -21,9 +21,9 @@ const NavLinks = () => {
             ? "text-primary text-xl hover:text-primary"
             : "text-gray-500 text-lg hover:text-primary"
         }
-        to={"/services"}
+        to={"/tours"}
       >
-        Services
+        Tours
       </NavLink>
       <NavLink
         className={({ isActive }) =>
@@ -57,15 +57,15 @@ const Navbar = () => {
   };
   return (
     <div className="pt-4 pb-4">
-      <div className="md:flex md:justify-between md:mx-[15rem] space-y-5">
+      <div className="md:flex md:justify-between md:mx-[7rem] lg:mx-[15rem] space-y-5">
         <div className="flex justify-between px-4 md:p-0">
-          <button>
+          <NavLink to={"/"}>
             <img
-              className="w-[9rem] md:w-24 "
+              className="w-[9rem] lg:w-24 "
               src="https://www.chintamanitours.com/static/img/logo/chintamani.png"
               alt=""
             />
-          </button>
+          </NavLink>
           <div className="flex items-center">
             {isOpen ? (
               <X onClick={handleToggle} className="md:hidden" size={35} />
@@ -74,11 +74,11 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        <div className="hidden md:flex gap-6 md:flex-row flex-col items-center">
+        <div className="hidden md:flex gap-6 md:flex-row flex-col">
           <NavLinks />
         </div>
         {isOpen && (
-          <div className="flex gap-5 md:flex-row flex-col md:hidden  items-center">
+          <div className="flex gap-5 md:flex-row flex-col md:hidden items-center w-full">
             <NavLinks />
           </div>
         )}
