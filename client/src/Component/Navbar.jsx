@@ -56,8 +56,8 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="pt-4 pb-4">
-      <div className="md:flex md:justify-between md:mx-[7rem] lg:mx-[15rem] space-y-5">
+    <div className="py-4 bg-white shadow-md">
+      <div className="md:flex md:justify-between md:mx-[7rem] lg:mx-[15rem] space-y-4">
         <div className="flex justify-between px-4 md:p-0">
           <NavLink to={"/"}>
             <img
@@ -78,7 +78,7 @@ const Navbar = () => {
           <NavLinks />
         </div>
         {isOpen && (
-          <div className="flex gap-5 md:flex-row flex-col md:hidden items-center w-full">
+          <div className="flex gap-5 absolute bg-white shadow-md md:flex-row flex-col md:hidden items-center w-full">
             <NavLinks />
           </div>
         )}

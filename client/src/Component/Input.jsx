@@ -3,7 +3,7 @@ import { Search, MapPin, Calendar } from "lucide-react";
 
 const Input = () => {
   return (
-    <div className=" bg-white py-3 px-2 md:px-5 rounded-lg shadow-sm xl:w-[63%]">
+    <div className=" bg-white py-3 mt-6 px-2 md:px-5 rounded-lg shadow-lg xl:w-[63%]">
       <div className="flex justify-between gap-3 md:gap-12 lg:gap-14">
         <div className="flex flex-col gap-4 flex-grow md:flex-row md:items-center">
           <div className="relative md:w-full">

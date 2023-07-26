@@ -1,0 +1,68 @@
+const tours = [
+  {
+    id: 1,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 2,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 3,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 4,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 5,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 6,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 7,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+  {
+    id: 8,
+    img: "/Asset/img1.jpg",
+    location: "Nepal",
+    date: "Oct 25 2023",
+    title: "Nepal Darshan",
+    price: 25000,
+  },
+];
+
+export default tours;
