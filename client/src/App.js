@@ -6,19 +6,23 @@ import Contact from "./Pages/Contact";
 import Tours from "./Pages/Tours";
 import Navbar from "./Component/Navbar";
 import Footer from "./Component/Footer";
+import TourDetails from "./Pages/TourDetails";
 
 function App() {
   return (
-    <div className="w-full space-y-3  bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
+    <div className="w-full  bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
       <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/tours" element={<Tours />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<Landing />} />
-      </Routes>
-      <Footer />
+      <div className="space-y-9">
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/tours" element={<Tours />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/tours/:id" element={<TourDetails />} />
+          <Route path="*" element={<Landing />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

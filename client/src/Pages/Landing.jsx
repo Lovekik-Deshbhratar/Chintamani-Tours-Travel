@@ -7,7 +7,7 @@ import Testimonial from "../Component/Testimonial";
 
 const Landing = () => {
   return (
-    <div className="px-7 py-4 space-y-7 md:mx-[4%] xl:mx-[10%] ">
+    <div className="px-7 py-4 space-y-7 md:mx-[4%] xl:mx-[10%] mt-9">
       <div className="grid grid-cols-1 md:gap-6 lg:grid-cols-2">
         <div className="space-y-6 md:mt-12">
           <span className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit md:text-lg">
@@ -49,10 +49,22 @@ const Landing = () => {
         </div>
       </div>
       <Input />
-      <Services />
-      <Card />
-      <Gallery />
-      <Testimonial />
+      <div className="space-y-20 md:space-y-24 py-12 md:py-20">
+        <Services />
+        <div>
+          <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
+            Explore
+          </h1>
+          <h1 className="font-semibold text-3xl md:text-4xl capitalize mt-3">
+            our upcoming tours
+          </h1>
+          <div className="mt-14">
+            <Card />
+          </div>
+        </div>
+        <Gallery />
+        <Testimonial />
+      </div>
     </div>
   );
 };

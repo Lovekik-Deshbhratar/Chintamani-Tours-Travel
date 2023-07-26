@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="px-7 py-4 md:mx-[4%] xl:mx-[10%] space-y-8">
+    <div className="px-7 py-8 md:px-[4%] xl:px-[10%] space-y-8 bg-white shadow-md">
       <div className="grid grid-cols-1 lg:grid-cols-4 space-y-8 lg:space-y-0">
         <div className="md:max-lg:flex md:max-lg:justify-center">
           <img
@@ -41,6 +41,12 @@ const Footer = () => {
             </Link>
             <Link className="w-fit h-fit" to={""}>
               Privacy Policy
+            </Link>
+            <Link className="w-fit h-fit" to={""}>
+              Login
+            </Link>
+            <Link className="w-fit h-fit" to={""}>
+              Register
             </Link>
           </div>
         </div>

@@ -1,79 +1,16 @@
 import React from "react";
 import { CalendarCheck, MapPin } from "lucide-react";
-
-const card = [
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-  {
-    img: "/Asset/img1.jpg",
-    location: "Nepal",
-    date: "Oct 25 2023",
-    title: "Nepal Darshan",
-    price: 25000,
-  },
-];
+import { Link } from "react-router-dom";
+import tours from "./tours";
 
 const Card = () => {
   return (
-    <div className="py-3">
-      <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
-        Explore
-      </h1>
-      <h1 className="font-semibold text-3xl md:text-4xl capitalize mt-3">
-        our upcoming tours
-      </h1>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10">
-        {card.map((item, key) => (
+    <div>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+        {tours.map((item, key) => (
           <div
             className="space-y-2 bg-white rounded-lg overflow-hidden shadow-2xl ring-1 ring-primary/10"
-            key={key}
+            key={item.id}
           >
             <div className="object-cover relative">
               <img src={item.img} alt="" />
@@ -91,9 +28,12 @@ const Card = () => {
                   {item.date}
                 </span>
               </div>
-              <h1 className="text-gray-800 text-xl font-semibold">
+              <Link
+                to={`/tours/${item.id}`}
+                className="text-gray-800 text-xl font-semibold hover:text-secondary cursor-pointer"
+              >
                 {item.title}
-              </h1>
+              </Link>
               <div className="flex justify-between">
                 <div className="flex items-center">
                   <span>
