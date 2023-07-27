@@ -1,13 +1,12 @@
 import React from "react";
 import { CalendarCheck, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import tours from "./tours";
 
-const Card = () => {
+const Card = ({ data }) => {
   return (
     <div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-        {tours.map((item, key) => (
+        {data.map((item, key) => (
           <div
             className="space-y-2 bg-white rounded-lg overflow-hidden shadow-2xl ring-1 ring-primary/10"
             key={item.id}
@@ -47,7 +46,7 @@ const Card = () => {
                 </div>
 
                 <button className="bg-secondary p-2 text-white text-sm rounded-lg font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]">
-                  Book Now
+                  <Link to={`/tours/${item.id}`}>Book Now</Link>
                 </button>
               </div>
             </div>

@@ -7,10 +7,11 @@ import Tours from "./Pages/Tours";
 import Navbar from "./Component/Navbar";
 import Footer from "./Component/Footer";
 import TourDetails from "./Pages/TourDetails";
+import Thanks from "./Pages/Thanks";
 
 function App() {
   return (
-    <div className="w-full  bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
+    <div className="w-full bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
       <Navbar />
       <div className="space-y-9">
         <Routes>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/tours" element={<Tours />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/tours/:id" element={<TourDetails />} />
+          <Route path="/thanks" element={<Thanks />} />
           <Route path="*" element={<Landing />} />
         </Routes>
         <Footer />

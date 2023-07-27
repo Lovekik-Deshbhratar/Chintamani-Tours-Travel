@@ -4,6 +4,7 @@ import Services from "../Component/Services";
 import Card from "../Component/Card";
 import Gallery from "../Component/Gallery";
 import Testimonial from "../Component/Testimonial";
+import tours from "../Component/tours";
 
 const Landing = () => {
   return (
@@ -59,7 +60,7 @@ const Landing = () => {
             our upcoming tours
           </h1>
           <div className="mt-14">
-            <Card />
+            <Card data={tours} />
           </div>
         </div>
         <Gallery />
