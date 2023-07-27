@@ -40,6 +40,7 @@ const Gallery = () => {
         <div className="columns-1 gap-5 lg:gap-5 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5 lg:[&>img:not(:first-child)]:mt-8">
           {photos.map((item, key) => (
             <img
+              key={key}
               className="rounded-xl transition-transform duration-[0.3s] hover:scale-110"
               src={item.img}
               alt=""
