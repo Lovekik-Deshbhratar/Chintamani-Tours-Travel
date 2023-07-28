@@ -7,7 +7,9 @@ const Signup = () => {
       <div className="px-7 py-16 md:px-0 md:py-0 md:w-[95%] md:h-[80%] lg:w-[80%] lg:h-[80%] xl:w-[60%] xl:h-[80%] md:flex md:bg-white md:rounded-3xl">
         <div className="hidden w-[40rem] bg-secondary my-4 ml-4 rounded-2xl md:flex text-white">
           <div className="py-12 px-10 md:space-y-16 2xl:space-y-[5.8rem]">
-            <h1 className="text-sm font-semibold">CHINTAMANI TOURS & TRAVEL</h1>
+            <h1 className="text-sm font-semibold">
+              <Link to={"/"}>CHINTAMANI TOURS & TRAVEL</Link>
+            </h1>
             <div className="md:space-y-5 xl:space-y-7">
               <p className="md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold tracking-wide">
                 Start your
