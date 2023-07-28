@@ -1,7 +1,67 @@
 import React from "react";
 
 const Login = () => {
-  return <div className="h-screen">Login</div>;
+  return (
+    <div className="h-screen md:flex md:justify-center md:items-center">
+      <div className="px-7 py-16 md:px-0 md:py-0 md:w-[95%] md:h-[80%] lg:w-[80%] lg:h-[80%] xl:w-[60%] xl:h-[80%] md:flex md:bg-white md:rounded-3xl">
+        <div className="hidden w-[40rem] bg-secondary my-4 ml-4 rounded-2xl md:flex text-white">
+          <div className="py-12 px-10 md:space-y-16 2xl:space-y-[5.8rem]">
+            <h1 className="text-sm font-semibold">CHINTAMANI TOURS & TRAVEL</h1>
+            <div className="md:space-y-5 xl:space-y-7">
+              <p className="md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold tracking-wide">
+                Start your
+                <br /> journey with us.
+              </p>
+              <p
+                className="md:text-base
+               2xl:text-lg"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+                a repellat minima ducimus fuga ad?
+              </p>
+            </div>
+            <div>
+              <img
+                src="/Asset/welcome.svg"
+                alt=""
+                className="animate-up-down"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="bg-white px-5 py-10 lg:px-16 lg:py-20 rounded-xl shadow-xl md:rounded-none md:shadow-none space-y-10 md:w-full">
+          <div className="space-y-4">
+            <h1 className="text-black text-3xl font-bold">Login</h1>
+            <h1 className="">
+              Dont't have an account?{" "}
+              <span className="text-primary">Register</span>
+            </h1>
+          </div>
+          <form className="space-y-6">
+            <div className="space-y-3">
+              <h1 className="font-semibold text-gray-500">Email</h1>
+              <input
+                type="text"
+                className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
+              />
+            </div>
+            <div className="space-y-3">
+              <h1 className="font-semibold text-gray-500">Password</h1>
+              <input
+                type="password"
+                className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary tracking-widest font-semibold text-black"
+              />
+            </div>
+            <div>
+              <button className="w-full md:w-[10rem] bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
