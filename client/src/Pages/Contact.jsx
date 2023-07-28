@@ -1,7 +1,15 @@
 import React from "react";
+import Navbar from "../Component/Navbar";
+import Footer from "../Component/Footer";
 
 const Contact = () => {
-  return <div>Contact</div>;
+  return (
+    <>
+      <Navbar />
+      <div>Contact</div>
+      <Footer />
+    </>
+  );
 };
 
 export default Contact;
