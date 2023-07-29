@@ -10,6 +10,15 @@ module.exports = {
       fontFamily: {
         parisienne: ["Parisienne, cursive"],
       },
+      animation: {
+        "up-down": "up-down 2s ease-in-out infinite alternate-reverse both",
+      },
+      keyframes: {
+        "up-down": {
+          "0%": { transform: "translateY(10px)" },
+          "100%": { transform: "translateY(-10px)" },
+        },
+      },
     },
   },
   plugins: [],
