@@ -8,6 +8,8 @@ import TourDetails from "./Pages/TourDetails";
 import Thanks from "./Pages/Thanks";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import AdminAddTour from "./Pages/Admin/AdminAddTour";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
+        <Route path="/adminAddTour" element={<AdminAddTour />} />
         <Route path="*" element={<Landing />} />
       </Routes>
     </div>

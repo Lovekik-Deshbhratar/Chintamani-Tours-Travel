@@ -20,7 +20,7 @@ const connect = async () => {
 
 // Middleware
 server.use(cors());
-server.use(express.json());
+server.use(express.json({ limit: "50mb" }));
 server.use("/api/tour/create", TourRoute);
 
 // Server connection to port
