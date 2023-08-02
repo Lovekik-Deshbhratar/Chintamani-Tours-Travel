@@ -7,7 +7,8 @@ const tourSchema = new Schema(
     price: { type: Number, required: true },
     date: { type: Date, required: true },
     description: { type: String },
-    photo: { type: String, requird: true },
+    photo: { type: String, required: true },
+    quote: { type: String, required: true },
     reviews: [
       {
         type: Schema.Types.ObjectId,
