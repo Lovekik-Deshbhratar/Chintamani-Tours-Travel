@@ -31,7 +31,7 @@ const AdminSidebar = () => {
         </NavLink>
         {isSubMenu && (
           <div className="flex flex-col -mt-4 gap-2">
-            <NavLink>All Tours</NavLink>
+            <NavLink to={"/adminAllTour"}>All Tours</NavLink>
             <NavLink to={"/adminAddTour"}>Add Tour</NavLink>
           </div>
         )}

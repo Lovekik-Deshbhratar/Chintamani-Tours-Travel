@@ -78,7 +78,7 @@ const AdminAddTour = () => {
               }}
               onSubmit={async (values, action) => {
                 await axios
-                  .post("http://localhost:8080/api/tour/create", values)
+                  .post("http://localhost:8080/api/tour", values)
                   .then((response) => {
                     console.log(response);
                     action.resetForm();

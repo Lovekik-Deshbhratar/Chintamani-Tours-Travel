@@ -33,7 +33,7 @@ const AdminNavbar = () => {
             </NavLink>
             {isSubMenu && (
               <div className="flex flex-col  space-y-2 -mt-0.5">
-                <NavLink>All Tours</NavLink>
+                <NavLink to={"/adminAllTour"}>All Tours</NavLink>
                 <NavLink to={"/adminAddTour"}>Add Tour</NavLink>
               </div>
             )}
