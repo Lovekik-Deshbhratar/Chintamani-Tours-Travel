@@ -1,10 +1,11 @@
 import express from "express";
 import TourModel from "../model/Tour.js";
+import { verifyAdmin } from "../middleware/verifyToken.js";
 
 const TourRoute = express.Router();
 
 // Create Tour
-TourRoute.post("/", async (req, res) => {
+TourRoute.post("/", verifyAdmin, async (req, res) => {
   const tour = new TourModel(req.body);
   try {
     const doc = await tour.save();
@@ -27,6 +28,7 @@ TourRoute.get("/", async (req, res) => {
   const page = parseInt(req.query.page);
   try {
     const tours = await TourModel.find()
+      .populate("reviews")
       .skip(page * 8)
       .limit(8);
     res.status(200).json({
@@ -47,7 +49,7 @@ TourRoute.get("/", async (req, res) => {
 TourRoute.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const doc = await TourModel.findById(id);
+    const doc = await TourModel.findById(id).populate("reviews");
     res.status(200).json({
       success: true,
       message: "Successfully deleted",
@@ -62,7 +64,7 @@ TourRoute.get("/:id", async (req, res) => {
 });
 
 // Update One
-TourRoute.put("/:id", async (req, res) => {
+TourRoute.put("/:id", verifyAdmin, async (req, res) => {
   const id = req.params.id;
   try {
     const doc = await TourModel.findByIdAndUpdate(id, req.body, {
@@ -82,7 +84,7 @@ TourRoute.put("/:id", async (req, res) => {
 });
 
 // Delete One
-TourRoute.delete("/:id", async (req, res) => {
+TourRoute.delete("/:id", verifyAdmin, async (req, res) => {
   const id = req.params.id;
   try {
     await TourModel.findByIdAndDelete(id);
@@ -102,7 +104,7 @@ TourRoute.delete("/:id", async (req, res) => {
 TourRoute.get("/search/getByTour", async (req, res) => {
   const location = new RegExp(req.query.location, "i");
   try {
-    const doc = await TourModel.find({ location });
+    const doc = await TourModel.find({ location }).populate("reviews");
     res.status(200).json({
       success: true,
       message: "Successfully",
