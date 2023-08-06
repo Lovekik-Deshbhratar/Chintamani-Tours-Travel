@@ -6,6 +6,8 @@ import TourRoute from "./routes/TourRoute.js";
 import UserRoute from "./routes/UserRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import ReviewRoute from "./routes/ReviewRoute.js";
+import BookingRoute from "./routes/BookingRoute.js";
+import cookieParser from "cookie-parser";
 
 // Server Creation
 const server = express();
@@ -27,11 +29,13 @@ const connect = async () => {
 
 // Middleware
 server.use(cors(corsOptions));
+server.use(cookieParser());
 server.use(express.json({ limit: "50mb" }));
 server.use("/api/v1/auth", AuthRoute);
 server.use("/api/v1/tours", TourRoute);
 server.use("/api/v1/users", UserRoute);
 server.use("/api/v1/review", ReviewRoute);
+server.use("/api/v1/booking", BookingRoute);
 
 // Server connection to port
 server.listen(port, () => {

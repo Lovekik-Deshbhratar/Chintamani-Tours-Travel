@@ -29,7 +29,7 @@ UserRoute.get("/:id", verifyUser, async (req, res) => {
     const doc = await UserModel.findById(id);
     res.status(200).json({
       success: true,
-      message: "Successfully deleted",
+      message: "Successfully",
       data: doc,
     });
   } catch (error) {

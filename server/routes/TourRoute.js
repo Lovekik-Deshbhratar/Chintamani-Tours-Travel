@@ -52,7 +52,7 @@ TourRoute.get("/:id", async (req, res) => {
     const doc = await TourModel.findById(id).populate("reviews");
     res.status(200).json({
       success: true,
-      message: "Successfully deleted",
+      message: "Successfully",
       data: doc,
     });
   } catch (error) {
