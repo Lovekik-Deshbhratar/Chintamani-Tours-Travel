@@ -62,7 +62,7 @@ const Login = () => {
             </div>
             <div>
               <button className="w-full md:w-[10rem] bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5">
-                Login
+                <Link to={"/adminDashboard"}>Login</Link>
               </button>
             </div>
           </form>
