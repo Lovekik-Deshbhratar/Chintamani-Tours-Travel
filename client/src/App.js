@@ -11,6 +11,7 @@ import Signup from "./Pages/Signup";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminAddTour from "./Pages/Admin/AdminAddTour";
 import AdminAllTour from "./Pages/Admin/AdminAllTour";
+import SearchResult from "./Pages/SearchResult";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/tours/search" element={<SearchResult />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/adminAddTour" element={<AdminAddTour />} />
         <Route path="/adminAllTour" element={<AdminAllTour />} />

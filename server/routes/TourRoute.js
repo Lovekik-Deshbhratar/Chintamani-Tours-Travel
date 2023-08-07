@@ -118,4 +118,25 @@ TourRoute.get("/search/getByTour", async (req, res) => {
   }
 });
 
+// Get latest 8 tour
+TourRoute.get("/latest/tour", async (req, res) => {
+  try {
+    const tours = await TourModel.find()
+      .populate("reviews")
+      .sort({ createdAt: -1 })
+      .limit(8);
+    res.status(200).json({
+      success: true,
+      count: tours.length,
+      message: "Successfully",
+      data: tours,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Not found",
+    });
+  }
+});
+
 export default TourRoute;

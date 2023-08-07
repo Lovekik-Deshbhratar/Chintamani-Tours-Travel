@@ -5,7 +5,7 @@ const tourSchema = new Schema(
     title: { type: String, required: true, unique: true },
     location: { type: String, required: true },
     price: { type: Number, required: true },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     description: { type: String },
     photo: { type: String, required: true },
     quote: { type: String, required: true },

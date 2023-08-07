@@ -9,10 +9,10 @@ const Card = ({ data }) => {
         {data.map((item, key) => (
           <div
             className="space-y-2 bg-white rounded-lg overflow-hidden shadow-2xl ring-1 ring-primary/10"
-            key={item.id}
+            key={item._id}
           >
             <div className="object-cover relative">
-              <img src={item.img} alt="" />
+              <img src={item.photo} alt="" />
               <button className="absolute right-0 bottom-0 bg-secondary p-2 h-fit text-white text-xs mb-1 font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[1.1]">
                 Download Quote
               </button>
@@ -27,12 +27,14 @@ const Card = ({ data }) => {
                   {item.date}
                 </span>
               </div>
-              <Link
-                to={`/tours/${item.id}`}
-                className="text-gray-800 text-xl font-semibold hover:text-secondary cursor-pointer"
-              >
-                {item.title}
-              </Link>
+              <div>
+                <Link
+                  to={`/tours/${item._id}`}
+                  className="text-gray-800 text-xl font-semibold hover:text-secondary cursor-pointer"
+                >
+                  {item.title}
+                </Link>
+              </div>
               <div className="flex justify-between">
                 <div className="flex items-center">
                   <span>
@@ -44,9 +46,8 @@ const Card = ({ data }) => {
                     </span>
                   </span>
                 </div>
-
                 <button className="bg-secondary p-2 text-white text-sm rounded-lg font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]">
-                  <Link to={`/tours/${item.id}`}>Book Now</Link>
+                  <Link to={`/tours/${item._id}`}>Book Now</Link>
                 </button>
               </div>
             </div>
