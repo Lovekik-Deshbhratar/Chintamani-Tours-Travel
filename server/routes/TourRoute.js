@@ -139,4 +139,20 @@ TourRoute.get("/latest/tour", async (req, res) => {
   }
 });
 
+// Get tour count
+TourRoute.get("/search/getTourCount", async (req, res) => {
+  try {
+    const docCount = await TourModel.estimatedDocumentCount();
+    res.status(200).json({
+      success: true,
+      data: docCount,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch",
+    });
+  }
+});
+
 export default TourRoute;
