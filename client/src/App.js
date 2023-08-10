@@ -12,26 +12,32 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminAddTour from "./Pages/Admin/AdminAddTour";
 import AdminAllTour from "./Pages/Admin/AdminAllTour";
 import SearchResult from "./Pages/SearchResult";
+import Notification from "./Util/Notification";
 
 function App() {
   return (
-    <div className="w-full bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
-      <Routes>
-        <Route exact path="/" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/tours" element={<Tours />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/tours/:id" element={<TourDetails />} />
-        <Route path="/thanks" element={<Thanks />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/tours/search" element={<SearchResult />} />
-        <Route path="/adminDashboard" element={<AdminDashboard />} />
-        <Route path="/adminAddTour" element={<AdminAddTour />} />
-        <Route path="/adminAllTour" element={<AdminAllTour />} />
-        <Route path="*" element={<Landing />} />
-      </Routes>
-    </div>
+    <>
+      <div className="flex justify-center">
+        <Notification />
+      </div>
+      <div className="w-full bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/tours" element={<Tours />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/tours/:id" element={<TourDetails />} />
+          <Route path="/thanks" element={<Thanks />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/tours/search" element={<SearchResult />} />
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/adminAddTour" element={<AdminAddTour />} />
+          <Route path="/adminAllTour" element={<AdminAllTour />} />
+          <Route path="*" element={<Landing />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

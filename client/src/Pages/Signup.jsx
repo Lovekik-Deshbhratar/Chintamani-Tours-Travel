@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-import { BASE_URL } from "../util/config";
+import { BASE_URL } from "../Util/config";
+import { NotificationContext } from "../Context/NotificationContext";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -12,6 +13,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
+  const { notificationHandler } = useContext(NotificationContext);
 
   const handeleChange = (e) => {
     const { name, value } = e.target;
@@ -32,13 +34,23 @@ const Signup = () => {
 
       const result = await res.json();
 
-      if (!res.ok) alert(result.message);
+      if (!res.ok)
+        return notificationHandler({
+          type: "error",
+          message: result.message,
+        });
 
       dispatch({ type: "REGISTER_SUCCESS" });
-
+      notificationHandler({
+        type: "success",
+        message: result.message,
+      });
       navigate("/login");
     } catch (error) {
-      alert(error.message);
+      notificationHandler({
+        type: "error",
+        message: error.message,
+      });
     }
   };
 

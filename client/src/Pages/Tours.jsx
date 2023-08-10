@@ -5,7 +5,7 @@ import Card from "../Component/Card";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import useFetch from "../Hooks/useFetch";
-import { BASE_URL } from "../util/config";
+import { BASE_URL } from "../Util/config";
 
 const Tours = () => {
   const [pageCount, setPageCount] = useState(0);

@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-import { BASE_URL } from "../util/config";
+import { BASE_URL } from "../Util/config";
+import { NotificationContext } from "../Context/NotificationContext";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+
+  const { notificationHandler } = useContext(NotificationContext);
 
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
@@ -32,9 +35,17 @@ const Login = () => {
       });
 
       const result = await res.json();
-      if (!res.ok) alert(result.message);
+      if (!res.ok)
+        return notificationHandler({
+          type: "error",
+          message: result?.message,
+        });
 
       dispatch({ type: "LOGIN_SUCCESS", payload: result.data });
+      notificationHandler({
+        type: "success",
+        message: result?.message,
+      });
       navigate("/");
     } catch (error) {
       dispatch({ type: "LOGIN_FAILURE", payload: error.message });

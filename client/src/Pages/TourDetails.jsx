@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IndianRupee, MapPin } from "lucide-react";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import useFetch from "../Hooks/useFetch";
-import { BASE_URL } from "../util/config";
+import { BASE_URL } from "../Util/config";
+import { AuthContext } from "../Context/AuthContext";
+import { NotificationContext } from "../Context/NotificationContext";
 
 const TourDetails = () => {
   const [formValues, setFormValues] = useState({
@@ -15,17 +17,41 @@ const TourDetails = () => {
   });
   let { id } = useParams();
   const navigate = useNavigate();
+  const [review, setReview] = useState("");
+  const { user } = useContext(AuthContext);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { notificationHandler } = useContext(NotificationContext);
 
-  const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/tours/${id}`);
+      if (!res.ok) {
+        setError("Failed to fetch");
+      }
+      const result = await res.json();
+      setData(result.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
 
   const { title, location, price, date, description, photo, quote, reviews } =
-    tour;
+    data;
 
   const options = { day: "numeric", month: "long", year: "numeric" };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [tour]);
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +63,47 @@ const TourDetails = () => {
 
   const handleSubmit = () => {
     navigate("/thanks");
+  };
+
+  const handleReview = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (!user || user === undefined || user === null) alert("Please Log In ");
+
+      const reviewObj = {
+        username: user?.username,
+        reviewText: review,
+      };
+
+      const res = await fetch(`${BASE_URL}/review/${id}`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(reviewObj),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok)
+        return notificationHandler({
+          type: "error",
+          message: result.message,
+        });
+
+      notificationHandler({
+        type: "success",
+        message: result.message,
+      });
+      fetchData();
+    } catch (error) {
+      notificationHandler({
+        type: "success",
+        message: error.message,
+      });
+    }
   };
   return (
     <>
@@ -76,10 +143,15 @@ const TourDetails = () => {
                 Reviews ({reviews?.length})
               </h1>
               <div className="relative">
-                <button className="absolute right-0 mt-1  mr-1 bottom- bg-secondary py-1 px-3  text-white rounded-full font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]">
+                <button
+                  onClick={handleReview}
+                  className="absolute right-0 mt-1  mr-1 bottom- bg-secondary py-1 px-3  text-white rounded-full font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]"
+                >
                   Submit
                 </button>
                 <input
+                  value={review}
+                  onChange={(e) => setReview((prev) => e.target.value)}
                   type="text"
                   placeholder="Share your thoughts..."
                   className="w-full bg-primary/[0] ring-1 ring-secondary py-2 px-3 rounded-full caret-secondary outline-none"
