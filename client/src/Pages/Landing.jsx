@@ -4,11 +4,18 @@ import Services from "../Component/Services";
 import Card from "../Component/Card";
 import Gallery from "../Component/Gallery";
 import Testimonial from "../Component/Testimonial";
-import tours from "../Component/tours";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
+import useFetch from "../Hooks/useFetch";
+import { BASE_URL } from "../Util/config";
 
 const Landing = () => {
+  const {
+    data: latestTours,
+    error,
+    loading,
+  } = useFetch(`${BASE_URL}/tours/latest/tour`);
+
   return (
     <>
       <Navbar />
@@ -64,7 +71,9 @@ const Landing = () => {
               our upcoming tours
             </h1>
             <div className="mt-14">
-              <Card data={tours} />
+              {loading && <h1 className="text-xl">Loading...</h1>}
+              {error && <h1 className="text-xl">{error}</h1>}
+              {!loading && !error && <Card data={latestTours} />}
             </div>
           </div>
           <Gallery />

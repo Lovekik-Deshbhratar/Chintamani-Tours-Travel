@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Search, MapPin, Calendar } from "lucide-react";
+import { BASE_URL } from "../Util/config";
+import { useNavigate } from "react-router-dom";
 
 const Input = () => {
+  const [location, setLocation] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = async () => {
+    if (location == "") alert("Field are required");
+
+    const res = await fetch(
+      `${BASE_URL}/tours/search/getByTour?location=${location}`
+    );
+
+    if (!res.ok) alert("Something went wrong");
+
+    const result = await res.json();
+
+    navigate(`/tours/search?location=${location}`, { state: result.data });
+  };
   return (
     <div className=" bg-white py-3 mt-6 px-2 md:px-5 rounded-lg shadow-lg xl:w-[63%]">
       <div className="flex justify-between gap-3 md:gap-12 lg:gap-14">
@@ -12,6 +30,8 @@ const Input = () => {
               className="caret-secondary outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10 rounded w-full text-gray-500 focus:placeholder:text-gray-500 placeholder:text-gray-400"
               type="text"
               placeholder="Where would you like to go?"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
             />
           </div>
           <div className="relative md:w-full">
@@ -36,7 +56,10 @@ const Input = () => {
           </div>
         </div>
         <div className="flex items-center">
-          <button className="bg-secondary p-3 rounded-tl-xl rounded-br-xl rounded-tr-md rounded-bl-md hover:rounded-tl-md hover:rounded-br-md hover:rounded-tr-xl hover:rounded-bl-xl transition-all duration-300  hover:bg-primary ease-in-out active:bg-[#fec595] active:scale-[0.9]">
+          <button
+            onClick={handleSearch}
+            className="bg-secondary p-3 rounded-tl-xl rounded-br-xl rounded-tr-md rounded-bl-md hover:rounded-tl-md hover:rounded-br-md hover:rounded-tr-xl hover:rounded-bl-xl transition-all duration-300  hover:bg-primary ease-in-out active:bg-[#fec595] active:scale-[0.9]"
+          >
             <Search color="white" />
           </button>
         </div>

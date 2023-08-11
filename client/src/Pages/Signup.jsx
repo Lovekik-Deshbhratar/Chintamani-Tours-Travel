@@ -1,7 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
+import { BASE_URL } from "../Util/config";
+import { NotificationContext } from "../Context/NotificationContext";
 
 const Signup = () => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+  const { dispatch } = useContext(AuthContext);
+  const { notificationHandler } = useContext(NotificationContext);
+
+  const handeleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok)
+        return notificationHandler({
+          type: "error",
+          message: result.message,
+        });
+
+      dispatch({ type: "REGISTER_SUCCESS" });
+      notificationHandler({
+        type: "success",
+        message: result.message,
+      });
+      navigate("/login");
+    } catch (error) {
+      notificationHandler({
+        type: "error",
+        message: error.message,
+      });
+    }
+  };
+
   return (
     <div className="h-screen md:flex md:justify-center md:items-center">
       <div className="px-7 py-16 md:px-0 md:py-0 md:w-[95%] md:h-[80%] lg:w-[80%] lg:h-[80%] xl:w-[60%] xl:h-[80%] md:flex md:bg-white md:rounded-3xl">
@@ -42,10 +94,13 @@ const Signup = () => {
               </Link>
             </h1>
           </div>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-3">
               <h1 className="font-semibold text-gray-500">Username</h1>
               <input
+                name="username"
+                value={credentials.username}
+                onChange={handeleChange}
                 type="text"
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
               />
@@ -53,6 +108,9 @@ const Signup = () => {
             <div className="space-y-3">
               <h1 className="font-semibold text-gray-500">Email</h1>
               <input
+                name="email"
+                value={credentials.email}
+                onChange={handeleChange}
                 type="text"
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
               />
@@ -60,13 +118,19 @@ const Signup = () => {
             <div className="space-y-3">
               <h1 className="font-semibold text-gray-500">Password</h1>
               <input
+                name="password"
+                value={credentials.password}
+                onChange={handeleChange}
                 type="password"
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary tracking-widest font-semibold text-black"
               />
             </div>
             <div>
-              <button className="w-full md:w-[10rem] bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5">
-                Login
+              <button
+                type="submit"
+                className="w-full md:w-[10rem] bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5"
+              >
+                Create account
               </button>
             </div>
           </form>
