@@ -37,12 +37,6 @@ const Footer = () => {
               Gallery
             </Link>
             <Link className="w-fit h-fit" to={""}>
-              Terms & Condition
-            </Link>
-            <Link className="w-fit h-fit" to={""}>
-              Privacy Policy
-            </Link>
-            <Link className="w-fit h-fit" to={""}>
               Login
             </Link>
             <Link className="w-fit h-fit" to={""}>

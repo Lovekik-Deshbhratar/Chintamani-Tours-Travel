@@ -7,16 +7,10 @@ import useFetch from "../Hooks/useFetch";
 import { BASE_URL } from "../Util/config";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
+import Booking from "../Component/Booking";
 
 const TourDetails = () => {
-  const [formValues, setFormValues] = useState({
-    fullName: "",
-    phone: "",
-    date: "",
-    peoples: "",
-  });
   let { id } = useParams();
-  const navigate = useNavigate();
   const [review, setReview] = useState("");
   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
@@ -53,23 +47,15 @@ const TourDetails = () => {
     window.scrollTo(0, 0);
   }, [data]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prevFormValues) => ({
-      ...prevFormValues,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = () => {
-    navigate("/thanks");
-  };
-
   const handleReview = async (e) => {
     e.preventDefault();
 
     try {
-      if (!user || user === undefined || user === null) alert("Please Log In ");
+      if (!user || user === undefined || user === null)
+        return notificationHandler({
+          type: "error",
+          message: "Please Log In",
+        });
 
       const reviewObj = {
         username: user?.username,
@@ -182,94 +168,7 @@ const TourDetails = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-md border px-5 py-7 md:px-7 md:py-8 space-y-6 md:space-y-8 bg-white lg:w-[42%] xl:w-[30%] h-fit sticky top-0">
-            <div>
-              <span className="flex items-center gap-1">
-                <IndianRupee className="inline" size={22} />
-                <div>
-                  <span className="text-2xl md:text-3xl font-semibold">
-                    {" "}
-                    {price}
-                  </span>{" "}
-                  <span className="text-gray-600">/per person</span>
-                </div>
-              </span>
-            </div>
-            <hr />
-            <div className="space-y-6">
-              <h1 className="text-xl md:text-2xl font-semibold">Infornation</h1>
-              <div className="grid grid-cols-2 border px-3 pt-3 pb-6 gap-4">
-                <input
-                  name="fullName"
-                  value={formValues.fullName}
-                  onChange={handleChange}
-                  type="text"
-                  placeholder="Full Name"
-                  className="col-span-2 border-b outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
-                />
-                <input
-                  name="phone"
-                  value={formValues.phone}
-                  onChange={handleChange}
-                  type="text"
-                  placeholder="Phone"
-                  className="col-span-2 border-b outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
-                />
-                <input
-                  name="date"
-                  value={formValues.date}
-                  onChange={handleChange}
-                  type="date"
-                  className="border-b outline-none h-11 px-3 focus:border-black caret-secondary  text-gray-600 bg-primary/[0]"
-                />
-                <input
-                  name="peoples"
-                  value={formValues.peoples}
-                  onChange={handleChange}
-                  type="number"
-                  placeholder="No. of People"
-                  className="border-b outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
-                />
-              </div>
-              <div className="space-y-5 md:space-y-6">
-                <div className="flex justify-between md:text-lg text-gray-700">
-                  <span className="flex items-center gap-1">
-                    <IndianRupee className="inline" size={18} /> {price} x{" "}
-                    {formValues?.peoples === "" ? 1 : formValues?.peoples}{" "}
-                    person
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <IndianRupee className="inline" size={18} />{" "}
-                    {price *
-                      (formValues?.peoples === "" ? 1 : formValues?.peoples)}
-                  </span>
-                </div>
-                <div className="flex justify-between md:text-lg text-gray-700">
-                  <span>Service charges</span>
-                  <span className="flex items-center gap-1">
-                    <IndianRupee className="inline" size={18} /> {100}
-                  </span>
-                </div>
-                <div className="flex justify-between text-xl md:text-2xl font-semibold">
-                  <span>Total</span>
-                  <span className="flex items-center gap-1">
-                    <IndianRupee className="inline" size={22} />{" "}
-                    {price *
-                      (formValues?.peoples === "" ? 1 : formValues?.peoples) +
-                      100}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <button
-                className="bg-secondary w-full p-2 text-white rounded-full font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.98] mt-2"
-                onClick={handleSubmit}
-              >
-                Book Now
-              </button>
-            </div>
-          </div>
+          <Booking tour={data} />
         </div>
       )}
       <Footer />
