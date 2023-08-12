@@ -8,6 +8,7 @@ import AuthRoute from "./routes/AuthRoute.js";
 import ReviewRoute from "./routes/ReviewRoute.js";
 import BookingRoute from "./routes/BookingRoute.js";
 import cookieParser from "cookie-parser";
+import AdminRoute from "./routes/AdminRoute.js";
 
 // Server Creation
 const server = express();
@@ -36,6 +37,7 @@ server.use("/api/v1/tours", TourRoute);
 server.use("/api/v1/users", UserRoute);
 server.use("/api/v1/review", ReviewRoute);
 server.use("/api/v1/booking", BookingRoute);
+server.use("/api/v1/admin", AdminRoute);
 
 // Server connection to port
 server.listen(port, () => {
