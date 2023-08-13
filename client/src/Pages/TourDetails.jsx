@@ -12,7 +12,7 @@ import Booking from "../Component/Booking";
 const TourDetails = () => {
   let { id } = useParams();
   const [review, setReview] = useState("");
-  const { user } = useContext(AuthContext);
+  const { user, role } = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -55,6 +55,12 @@ const TourDetails = () => {
         return notificationHandler({
           type: "error",
           message: "Please Log In",
+        });
+
+      if (role === "admin")
+        return notificationHandler({
+          type: "error",
+          message: "You are not allowed",
         });
 
       const reviewObj = {

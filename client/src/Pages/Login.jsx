@@ -41,12 +41,21 @@ const Login = () => {
           message: result?.message,
         });
 
-      dispatch({ type: "LOGIN_SUCCESS", payload: result.data });
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: result.data,
+        role: result.role,
+      });
+
+      if (result.role === "admin") {
+        navigate("/adminDashboard");
+      } else {
+        navigate("/");
+      }
       notificationHandler({
         type: "success",
         message: result?.message,
       });
-      navigate("/");
     } catch (error) {
       dispatch({ type: "LOGIN_FAILURE", payload: error.message });
     }
