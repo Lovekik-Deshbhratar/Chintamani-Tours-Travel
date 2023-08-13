@@ -26,9 +26,11 @@ TourRoute.post("/", verifyAdmin, async (req, res) => {
 TourRoute.get("/", async (req, res) => {
   // Pagination
   const page = parseInt(req.query.page);
+  const sort = req.query.sort;
   try {
     const tours = await TourModel.find()
       .populate("reviews")
+      .sort({ createdAt: sort })
       .skip(page * 8)
       .limit(8);
     res.status(200).json({

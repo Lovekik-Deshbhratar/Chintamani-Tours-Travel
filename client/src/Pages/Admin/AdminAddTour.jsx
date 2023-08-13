@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import AdminNavbar from "../../Component/Admin/AdminNavbar";
 import AdminSidebar from "../../Component/Admin/AdminSidebar";
 import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import { BASE_URL } from "../../Util/config";
+import { NotificationContext } from "../../Context/NotificationContext";
 
 const AdminAddTour = () => {
   const [image, setImage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { notificationHandler } = useContext(NotificationContext);
 
   const uploadImage = async (e, setFieldValue) => {
     const file = e.target.files[0];
@@ -59,7 +61,7 @@ const AdminAddTour = () => {
         ) : (
           <div className="px-10 py-8 flex-grow space-y-6">
             <div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
+              <h1 className="text-lg md:text-xl lg:text-2xl font-semibold">
                 Add Tour
               </h1>
               <span className="text-sm capitalize text-gray-500">
@@ -77,17 +79,33 @@ const AdminAddTour = () => {
                 quote: "",
               }}
               onSubmit={async (values, action) => {
-                await axios
-                  .post("http://localhost:8080/api/tour", values)
-                  .then((response) => {
-                    console.log(response);
-                    action.resetForm();
-                    setImage("");
-                    setIsSubmitted(!isSubmitted);
-                  })
-                  .catch((error) => {
-                    console.log(error);
+                try {
+                  const res = await fetch(`${BASE_URL}/tours`, {
+                    method: "post",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify(values),
                   });
+
+                  const result = await res.json();
+
+                  if (!res.ok)
+                    return notificationHandler({
+                      type: "error",
+                      message: result.message,
+                    });
+
+                  action.resetForm();
+                  setImage("");
+                  setIsSubmitted(!isSubmitted);
+                } catch (error) {
+                  notificationHandler({
+                    type: "success",
+                    message: error.message,
+                  });
+                }
               }}
             >
               {(formik) => (
@@ -105,7 +123,7 @@ const AdminAddTour = () => {
                       <input
                         type="file"
                         accept="image/*"
-                        className="w-full"
+                        className="w-fit"
                         name="photo"
                         onChange={(e) => {
                           uploadImage(e, formik.setFieldValue);
@@ -183,7 +201,7 @@ const AdminAddTour = () => {
                           uploadImage(e, formik.setFieldValue);
                         }}
                         type="file"
-                        className="w-full"
+                        className="w-fit outline-none"
                       />
                     </div>
                     <div className="space-x-4 lg:row-start-6 mt-6">

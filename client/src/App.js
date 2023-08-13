@@ -37,6 +37,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/tours/search" element={<SearchResult />} />
 
+          {/* Route protected for User only */}
           <Route
             path="/thanks"
             element={
@@ -45,6 +46,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           {/* Route protected for Admin only */}
           <Route
             path="/adminDashboard"
