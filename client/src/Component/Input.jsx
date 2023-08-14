@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Search, MapPin, Calendar } from "lucide-react";
 import { BASE_URL } from "../Util/config";
 import { useNavigate } from "react-router-dom";
+import { NotificationContext } from "../Context/NotificationContext";
 
 const Input = () => {
   const [location, setLocation] = useState("");
   const navigate = useNavigate();
+  const { notificationHandler } = useContext(NotificationContext);
 
   const handleSearch = async () => {
-    if (location == "") alert("Field are required");
+    if (location == "")
+      return notificationHandler({
+        type: "error",
+        message: "Field are required",
+      });
 
     const res = await fetch(
       `${BASE_URL}/tours/search/getByTour?location=${location}`
     );
 
-    if (!res.ok) alert("Something went wrong");
+    if (!res.ok)
+      return notificationHandler({
+        type: "error",
+        message: "Something went wrong",
+      });
 
     const result = await res.json();
 

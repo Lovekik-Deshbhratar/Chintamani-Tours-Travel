@@ -54,7 +54,7 @@ const NavLinks = () => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const { user, dispatch } = useContext(AuthContext);
+  const { user, dispatch, role } = useContext(AuthContext);
   const { notificationHandler } = useContext(NotificationContext);
 
   const handleToggle = () => {
@@ -97,6 +97,18 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex gap-7 md:flex-row flex-col ">
           <NavLinks />
+          {role === "admin" ? (
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-xl hover:text-primary"
+                  : "text-red-600 font-semibold text-lg hover:text-primary"
+              }
+              to={"/adminDashboard"}
+            >
+              Dashboard
+            </NavLink>
+          ) : null}
           {user ? (
             <h1 className="text-xl font-semibold">Hi, {user.username}</h1>
           ) : (
@@ -132,6 +144,18 @@ const Navbar = () => {
               <hr />
             </div>
             <div className="flex gap-5 flex-col items-end py-4 px-10">
+              {role === "admin" ? (
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary text-xl hover:text-primary"
+                      : "text-red-600 font-semibold text-lg hover:text-primary"
+                  }
+                  to={"/adminDashboard"}
+                >
+                  Dashboard
+                </NavLink>
+              ) : null}
               <NavLinks />
             </div>
             <div className="w-full px-10">

@@ -8,7 +8,7 @@ import { NotificationContext } from "../Context/NotificationContext";
 const Booking = ({ tour }) => {
   const { price, title } = tour;
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, role } = useContext(AuthContext);
   const [booking, setBooking] = useState({
     userId: user && user._id,
     userEmail: user && user.email,
@@ -36,6 +36,12 @@ const Booking = ({ tour }) => {
         return notificationHandler({
           type: "error",
           message: "Please Sign In",
+        });
+
+      if (role === "admin")
+        return notificationHandler({
+          type: "error",
+          message: "You are not allowed",
         });
 
       const res = await fetch(`${BASE_URL}/booking`, {

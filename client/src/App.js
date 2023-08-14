@@ -13,8 +13,14 @@ import AdminAddTour from "./Pages/Admin/AdminAddTour";
 import AdminAllTour from "./Pages/Admin/AdminAllTour";
 import SearchResult from "./Pages/SearchResult";
 import Notification from "./Util/Notification";
+import { useContext } from "react";
+import { AuthContext } from "./Context/AuthContext";
+import roles from "./Util/roles";
+import ProtectedRoute from "./Util/ProtectedRoute";
+import { Router } from "lucide-react";
 
 function App() {
+  const { role } = useContext(AuthContext);
   return (
     <>
       <div className="flex justify-center">
@@ -27,13 +33,46 @@ function App() {
           <Route path="/tours" element={<Tours />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/tours/:id" element={<TourDetails />} />
-          <Route path="/thanks" element={<Thanks />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/tours/search" element={<SearchResult />} />
-          <Route path="/adminDashboard" element={<AdminDashboard />} />
-          <Route path="/adminAddTour" element={<AdminAddTour />} />
-          <Route path="/adminAllTour" element={<AdminAllTour />} />
+
+          {/* Route protected for User only */}
+          <Route
+            path="/thanks"
+            element={
+              <ProtectedRoute allowedRole={roles.User} getRole={role}>
+                <Thanks />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Route protected for Admin only */}
+          <Route
+            path="/adminDashboard"
+            element={
+              <ProtectedRoute allowedRole={roles.Admin} getRole={role}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/adminAddTour"
+            element={
+              <ProtectedRoute allowedRole={roles.Admin} getRole={role}>
+                <AdminAddTour />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/adminAllTour"
+            element={
+              <ProtectedRoute allowedRole={roles.Admin} getRole={role}>
+                <AdminAllTour />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="*" element={<Landing />} />
         </Routes>
       </div>

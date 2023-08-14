@@ -1,6 +1,7 @@
 import UserModel from "../model/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import AdminModel from "../model/Admin.js";
 
 // User registration
 export const register = async (req, res) => {
@@ -29,50 +30,90 @@ export const login = async (req, res) => {
   const email = req.body.email;
 
   try {
-    const user = await UserModel.findOne({ email });
+    const admin = await AdminModel.findOne({ email });
 
-    // If user doesn't exist
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+    if (admin) {
+      // If user is exist then check the password or compare the password
+      const checkCorrectPassword = await bcrypt.compare(
+        req.body.password,
+        admin.password
+      );
+
+      // If password is incorrect
+      if (!checkCorrectPassword) {
+        return res
+          .status(401)
+          .json({ success: false, message: "Incorrect email or password" });
+      }
+
+      const { password, role, ...rest } = admin._doc;
+
+      // Create jwt token
+      const token = jwt.sign(
+        { id: admin._id, role: admin.role },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15d" }
+      );
+
+      // Set token in the browser cookies and send responce to the client
+      res
+        .cookie("accessToken", token, {
+          httpOnly: true,
+          expires: token.expiresIn,
+        })
+        .status(200)
+        .json({
+          token,
+          message: "Login successfull",
+          data: { ...rest },
+          role,
+        });
+    } else {
+      const user = await UserModel.findOne({ email });
+
+      // If user doesn't exist
+      if (!user) {
+        return res
+          .status(404)
+          .json({ success: false, message: "User not found" });
+      }
+
+      // If user is exist then check the password or compare the password
+      const checkCorrectPassword = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+
+      // If password is incorrect
+      if (!checkCorrectPassword) {
+        return res
+          .status(401)
+          .json({ success: false, message: "Incorrect email or password" });
+      }
+
+      const { password, role, ...rest } = user._doc;
+
+      // Create jwt token
+      const token = jwt.sign(
+        { id: user._id, role: user.role },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15d" }
+      );
+
+      // Set token in the browser cookies and send responce to the client
+      res
+        .cookie("accessToken", token, {
+          httpOnly: true,
+          expires: token.expiresIn,
+        })
+        .status(200)
+        .json({
+          token,
+          message: "Login successfull",
+          data: { ...rest },
+          role,
+        });
     }
-
-    // If user is exist then check the password or compare the password
-    const checkCorrectPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-
-    // If password is incorrect
-    if (!checkCorrectPassword) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Incorrect email or password" });
-    }
-
-    const { password, role, ...rest } = user._doc;
-
-    // Create jwt token
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET_KEY,
-      { expiresIn: "15d" }
-    );
-
-    // Set token in the browser cookies and send responce to the client
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-        expires: token.expiresIn,
-      })
-      .status(200)
-      .json({
-        token,
-        message: "Login successfull",
-        data: { ...rest },
-        role,
-      });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to login" });
   }
