@@ -130,6 +130,7 @@ const TourDatatable = () => {
 
       setEditValue({
         ...editValue,
+        id: id,
         title: result.data.title,
         location: result.data.location,
         price: result.data.price,
@@ -153,14 +154,46 @@ const TourDatatable = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    console.log(editValue);
+    const editValueObj = { ...editValue };
+    delete editValueObj.id;
+
+    try {
+      const res = await fetch(`${BASE_URL}/tours/${editValue.id}`, {
+        method: "put",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(editValueObj),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok)
+        return notificationHandler({
+          type: "error",
+          message: result.message,
+        });
+
+      notificationHandler({
+        type: "success",
+        message: result?.message,
+      });
+      handleToggle();
+      getTours();
+    } catch (error) {
+      notificationHandler({
+        type: "success",
+        message: error.message,
+      });
+    }
   };
   return (
     <div>
       {showForm ? null : (
         <div>
           <h1 className="text-lg md:text-xl lg:text-2xl font-semibold">
-            All Tour({tourCount})
+            All Tour ({tourCount})
           </h1>
         </div>
       )}
@@ -274,13 +307,6 @@ const TourDatatable = () => {
                     className="bg-secondary py-1.5 px-3 text-white rounded-lg font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]"
                   >
                     Submit
-                  </button>
-                  <button
-                    type="reset"
-                    className="bg-gray-400 py-1.5 px-3 text-white rounded-lg font-semibold hover:bg-gray-500 transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]"
-                    onClick={() => {}}
-                  >
-                    Cancel
                   </button>
                 </div>
               </div>

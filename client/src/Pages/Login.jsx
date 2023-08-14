@@ -66,7 +66,9 @@ const Login = () => {
         <div className="hidden w-[40rem] bg-secondary my-4 ml-4 rounded-2xl md:flex text-white">
           <div className="py-12 px-10 md:space-y-16 2xl:space-y-[5.8rem]">
             <h1 className="text-sm font-semibold">
-              <Link to={"/"}>CHINTAMANI TOURS & TRAVEL</Link>
+              <Link to={"/"} className="hover:text-black">
+                CHINTAMANI TOURS & TRAVEL
+              </Link>
             </h1>
             <div className="md:space-y-5 xl:space-y-7">
               <p className="md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold tracking-wide">
