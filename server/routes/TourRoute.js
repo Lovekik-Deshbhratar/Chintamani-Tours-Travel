@@ -105,8 +105,13 @@ TourRoute.delete("/:id", verifyAdmin, async (req, res) => {
 // Get tour by search
 TourRoute.get("/search/getByTour", async (req, res) => {
   const location = new RegExp(req.query.location, "i");
+  const date = new Date(req.query.date);
+
   try {
-    const doc = await TourModel.find({ location }).populate("reviews");
+    const doc = await TourModel.find({
+      location,
+      date: { $gte: date },
+    }).populate("reviews");
     res.status(200).json({
       success: true,
       message: "Successfully",

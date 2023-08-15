@@ -5,6 +5,27 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
 
+const validate = (values) => {
+  const errors = {};
+  if (!values.fullName) {
+    errors.fullName = "This is a required field";
+  } else if (values.fullName.length < 15) {
+    errors.fullName = "Must be 15 characters or more";
+  }
+
+  if (!values.phone) {
+    errors.phone = "This is a required field";
+  } else if (values.phone.length !== 10) {
+    errors.phone = "Must be exactly 10 digits";
+  }
+
+  if (!values.bookAt) {
+    errors.bookAt = "This is a required field";
+  }
+
+  return errors;
+};
+
 const Booking = ({ tour }) => {
   const { price, title } = tour;
   const navigate = useNavigate();
@@ -19,6 +40,7 @@ const Booking = ({ tour }) => {
     peopleSize: "",
   });
   const { notificationHandler } = useContext(NotificationContext);
+  const [error, setError] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +48,7 @@ const Booking = ({ tour }) => {
       ...prevbooking,
       [name]: value,
     }));
+    setError(validate({ ...booking, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -44,23 +67,29 @@ const Booking = ({ tour }) => {
           message: "You are not allowed",
         });
 
-      const res = await fetch(`${BASE_URL}/booking`, {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(booking),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok)
-        return notificationHandler({
-          type: "error",
-          message: result.message,
+      if (
+        booking.fullName != "" ||
+        booking.phone != "" ||
+        booking.bookAt != ""
+      ) {
+        const res = await fetch(`${BASE_URL}/booking`, {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(booking),
         });
-      navigate("/thanks");
+
+        const result = await res.json();
+
+        if (!res.ok)
+          return notificationHandler({
+            type: "error",
+            message: result.message,
+          });
+        navigate("/thanks");
+      }
     } catch (error) {
       notificationHandler({
         type: "success",
@@ -83,29 +112,45 @@ const Booking = ({ tour }) => {
       <div className="space-y-6">
         <h1 className="text-xl md:text-2xl font-semibold">Infornation</h1>
         <div className="grid grid-cols-2 border px-3 pt-3 pb-6 gap-4">
-          <input
-            name="fullName"
-            value={booking.fullName}
-            onChange={handleChange}
-            type="text"
-            placeholder="Full Name"
-            className="col-span-2 border-b outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
-          />
-          <input
-            name="phone"
-            value={booking.phone}
-            onChange={handleChange}
-            type="text"
-            placeholder="Phone"
-            className="col-span-2 border-b outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
-          />
-          <input
-            name="bookAt"
-            value={booking.bookAt}
-            onChange={handleChange}
-            type="date"
-            className="border-b outline-none h-11 px-3 focus:border-black caret-secondary  text-gray-600 bg-primary/[0]"
-          />
+          <div className="col-span-2">
+            <input
+              name="fullName"
+              value={booking.fullName}
+              onChange={handleChange}
+              type="text"
+              placeholder="Full Name *"
+              className="border-b w-full outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
+            />
+            {error?.fullName && (
+              <p className="text-sm mt-1 mb-2 text-red-500">{error.fullName}</p>
+            )}
+          </div>
+
+          <div className="col-span-2">
+            <input
+              name="phone"
+              value={booking.phone}
+              onChange={handleChange}
+              type="text"
+              placeholder="Phone *"
+              className=" border-b w-full outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
+            />{" "}
+            {error?.phone && (
+              <p className="text-sm mt-1 mb-2 text-red-500">{error.phone}</p>
+            )}
+          </div>
+          <div>
+            <input
+              name="bookAt"
+              value={booking.bookAt}
+              onChange={handleChange}
+              type="date"
+              className="border-b outline-none h-11 px-3 focus:border-black caret-secondary  text-gray-600 bg-primary/[0]"
+            />
+            {error?.bookAt && (
+              <p className="text-sm mt-1 mb-2 text-red-500">{error.bookAt}</p>
+            )}
+          </div>
           <input
             name="peopleSize"
             value={booking.peopleSize}
@@ -144,8 +189,9 @@ const Booking = ({ tour }) => {
       </div>
       <div>
         <button
-          className="bg-secondary w-full p-2 text-white rounded-full font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.98] mt-2"
+          className="bg-secondary w-full p-2 text-white rounded-full font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.98] mt-2 disabled:bg-gray-500 disabled:cursor-not-allowed"
           onClick={handleSubmit}
+          disabled={Object.keys(error).length > 0}
         >
           Book Now
         </button>

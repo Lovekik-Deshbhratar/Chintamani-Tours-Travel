@@ -78,6 +78,17 @@ const AdminAddTour = () => {
                 description: "",
                 quote: "",
               }}
+              validationSchema={Yup.object({
+                title: Yup.string()
+                  .max(30, "Must be 30 characters or less")
+                  .required("This is a Required"),
+                location: Yup.string()
+                  .max(20, "Must be 20 characters or less")
+                  .required("This is a Required"),
+                date: Yup.date().required("This is a Required"),
+                price: Yup.number().required("This is a Required"),
+                description: Yup.string(),
+              })}
               onSubmit={async (values, action) => {
                 try {
                   const res = await fetch(`${BASE_URL}/tours`, {
@@ -113,7 +124,7 @@ const AdminAddTour = () => {
                   <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                     <div className="space-y-3 lg:col-span-2">
                       <h1 className="font-semibold text-gray-500">
-                        Tour Image
+                        Tour Image *
                       </h1>
                       <img
                         src={image}
@@ -121,6 +132,7 @@ const AdminAddTour = () => {
                         className="rounded-md md:w-[20rem]"
                       />
                       <input
+                        required
                         type="file"
                         accept="image/*"
                         className="w-fit"
@@ -132,7 +144,7 @@ const AdminAddTour = () => {
                     </div>
                     <div className="space-y-3 ">
                       <h1 className="font-semibold text-gray-500">
-                        Tour Title
+                        Tour Title *
                       </h1>
                       <input
                         name="title"
@@ -142,10 +154,15 @@ const AdminAddTour = () => {
                         type="text"
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary  text-black"
                       />
+                      {formik.touched.title && formik.errors.title ? (
+                        <p className="text-sm mt-1 mb-2 text-red-500">
+                          {formik.errors.title}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="space-y-3">
                       <h1 className="font-semibold text-gray-500">
-                        Tour Location
+                        Tour Location *
                       </h1>
                       <input
                         name="location"
@@ -155,9 +172,16 @@ const AdminAddTour = () => {
                         type="text"
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary  text-black"
                       />
+                      {formik.touched.location && formik.errors.location ? (
+                        <p className="text-sm mt-1 mb-2 text-red-500">
+                          {formik.errors.location}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="space-y-3">
-                      <h1 className="font-semibold text-gray-500">Tour Date</h1>
+                      <h1 className="font-semibold text-gray-500">
+                        Tour Date *
+                      </h1>
                       <input
                         name="date"
                         value={formik.values.date}
@@ -166,10 +190,15 @@ const AdminAddTour = () => {
                         type="date"
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 py-2.5 px-4 focus:ring-1 focus:ring-secondary  "
                       />
+                      {formik.touched.date && formik.errors.date ? (
+                        <p className="text-sm mt-1 mb-2 text-red-500">
+                          {formik.errors.date}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="space-y-3">
                       <h1 className="font-semibold text-gray-500">
-                        Tour Price
+                        Tour Price *
                       </h1>
                       <input
                         name="price"
@@ -179,6 +208,11 @@ const AdminAddTour = () => {
                         type="text"
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary  text-black"
                       />
+                      {formik.touched.price && formik.errors.price ? (
+                        <p className="text-sm mt-1 mb-2 text-red-500">
+                          {formik.errors.price}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="space-y-3 lg:col-span-2">
                       <h1 className="font-semibold text-gray-500">
@@ -192,10 +226,17 @@ const AdminAddTour = () => {
                         type="text"
                         className="resize-none w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary text-black h-[9rem]"
                       />
+                      {formik.touched.description &&
+                      formik.errors.description ? (
+                        <p className="text-sm mt-1 mb-2 text-red-500">
+                          {formik.errors.description}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="space-y-3">
-                      <h1 className="font-semibold text-gray-500">Quote</h1>
+                      <h1 className="font-semibold text-gray-500">Quote *</h1>
                       <input
+                        required
                         name="quote"
                         onChange={(e) => {
                           uploadImage(e, formik.setFieldValue);

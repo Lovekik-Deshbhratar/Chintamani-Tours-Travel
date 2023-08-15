@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IndianRupee, MapPin } from "lucide-react";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
-import useFetch from "../Hooks/useFetch";
 import { BASE_URL } from "../Util/config";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
@@ -51,17 +50,23 @@ const TourDetails = () => {
     e.preventDefault();
 
     try {
-      if (!user || user === undefined || user === null)
-        return notificationHandler({
+      if (!user || user === undefined || user === null) {
+        notificationHandler({
           type: "error",
           message: "Please Log In",
         });
+        window.scrollTo(0, 0);
+        return;
+      }
 
-      if (role === "admin")
-        return notificationHandler({
+      if (role === "admin") {
+        notificationHandler({
           type: "error",
           message: "You are not allowed",
         });
+        window.scrollTo(0, 0);
+        return;
+      }
 
       const reviewObj = {
         username: user?.username,
@@ -79,24 +84,31 @@ const TourDetails = () => {
 
       const result = await res.json();
 
-      if (!res.ok)
-        return notificationHandler({
+      if (!res.ok) {
+        notificationHandler({
           type: "error",
           message: result.message,
         });
+        window.scrollTo(0, 0);
+        return;
+      }
 
       notificationHandler({
         type: "success",
         message: result.message,
       });
+      window.scrollTo(0, 0);
       fetchData();
+      setReview("");
     } catch (error) {
       notificationHandler({
-        type: "success",
+        type: "error",
         message: error.message,
       });
+      window.scrollTo(0, 0);
     }
   };
+
   return (
     <>
       <Navbar />
