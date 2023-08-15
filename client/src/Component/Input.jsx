@@ -5,30 +5,48 @@ import { useNavigate } from "react-router-dom";
 import { NotificationContext } from "../Context/NotificationContext";
 
 const Input = () => {
-  const [location, setLocation] = useState("");
+  const [searchData, setSearchData] = useState({
+    location: "",
+    date: "",
+  });
   const navigate = useNavigate();
   const { notificationHandler } = useContext(NotificationContext);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSearchData((prevbooking) => ({
+      ...prevbooking,
+      [name]: value,
+    }));
+  };
+
   const handleSearch = async () => {
-    if (location == "")
+    if (searchData.location === "" || searchData.date === "") {
       return notificationHandler({
-        type: "error",
-        message: "Field are required",
+        type: "warning",
+        message: "Fields are required",
       });
+    }
 
     const res = await fetch(
-      `${BASE_URL}/tours/search/getByTour?location=${location}`
+      `${BASE_URL}/tours/search/getByTour?location=${searchData.location}&date=${searchData.date}`
     );
 
-    if (!res.ok)
+    if (!res.ok) {
       return notificationHandler({
         type: "error",
         message: "Something went wrong",
       });
+    }
 
     const result = await res.json();
 
-    navigate(`/tours/search?location=${location}`, { state: result.data });
+    navigate(
+      `/tours/search?location=${searchData.location}&date=${searchData.date}`,
+      {
+        state: result.data,
+      }
+    );
   };
   return (
     <div className=" bg-white py-3 mt-6 px-2 md:px-5 rounded-lg shadow-lg xl:w-[63%]">
@@ -39,30 +57,21 @@ const Input = () => {
             <input
               className="caret-secondary outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10 rounded w-full text-gray-500 focus:placeholder:text-gray-500 placeholder:text-gray-400"
               type="text"
+              name="location"
               placeholder="Where would you like to go?"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              value={searchData.location}
+              onChange={handleChange}
             />
           </div>
           <div className="relative md:w-full">
             <Calendar className="absolute ml-0.5 my-2 md:m-2 text-primary/70" />
-            <select className="text-gray-400 focus:text-gray-500 outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10  rounded w-full">
-              <option value="" hidden>
-                Select a month
-              </option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
+            <input
+              className="caret-secondary outline-none ring-1 ring-primary/40 py-2 pl-7 md:pl-10 rounded w-full text-gray-500 focus:placeholder:text-gray-500 placeholder:text-gray-400"
+              type="date"
+              name="date"
+              value={searchData.date}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="flex items-center">

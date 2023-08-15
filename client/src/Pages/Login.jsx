@@ -4,11 +4,29 @@ import { AuthContext } from "../Context/AuthContext";
 import { BASE_URL } from "../Util/config";
 import { NotificationContext } from "../Context/NotificationContext";
 
+const validate = (values) => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = "This is a required field";
+  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+    errors.email = "Invalid email";
+  }
+
+  if (!values.password) {
+    errors.password = "This is a required field";
+  } else if (values.password.length < 8) {
+    errors.password = "Must be 8 characters or more";
+  }
+
+  return errors;
+};
+
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState({});
 
   const { notificationHandler } = useContext(NotificationContext);
 
@@ -18,6 +36,7 @@ const Login = () => {
   const handeleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
+    setError(validate({ ...credentials, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -115,6 +134,9 @@ const Login = () => {
                 type="text"
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
               />
+              {error?.email && (
+                <p className="text-sm mt-1 mb-2 text-red-500">{error.email}</p>
+              )}
             </div>
             <div className="space-y-3">
               <h1 className="font-semibold text-gray-500">Password</h1>
@@ -124,12 +146,18 @@ const Login = () => {
                 onChange={handeleChange}
                 type="password"
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary tracking-widest font-semibold text-black"
-              />
+              />{" "}
+              {error?.password && (
+                <p className="text-sm mt-1 mb-2 text-red-500">
+                  {error.password}
+                </p>
+              )}
             </div>
             <div>
               <button
+                disabled={Object.keys(error).length > 0}
                 type="submit"
-                className="w-full md:w-[10rem] bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5"
+                className="w-full md:w-[10rem] bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5 disabled:bg-gray-500 disabled:cursor-not-allowed"
               >
                 Login
               </button>
