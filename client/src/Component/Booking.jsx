@@ -122,7 +122,9 @@ const Booking = ({ tour }) => {
               className="border-b w-full outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
             />
             {error?.fullName && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.fullName}</p>
+              <p className="text-sm mt-1 mb-2 text-gray-500">
+                {error.fullName}
+              </p>
             )}
           </div>
 
@@ -136,7 +138,7 @@ const Booking = ({ tour }) => {
               className=" border-b w-full outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
             />{" "}
             {error?.phone && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.phone}</p>
+              <p className="text-sm mt-1 mb-2 text-gray-500">{error.phone}</p>
             )}
           </div>
           <div>
@@ -148,7 +150,7 @@ const Booking = ({ tour }) => {
               className="border-b outline-none h-11 px-3 focus:border-black caret-secondary  text-gray-600 bg-primary/[0]"
             />
             {error?.bookAt && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.bookAt}</p>
+              <p className="text-sm mt-1 mb-2 text-gray-500">{error.bookAt}</p>
             )}
           </div>
           <input

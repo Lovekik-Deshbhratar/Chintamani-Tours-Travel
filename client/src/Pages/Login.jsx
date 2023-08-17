@@ -15,7 +15,7 @@ const validate = (values) => {
   if (!values.password) {
     errors.password = "This is a required field";
   } else if (values.password.length < 8) {
-    errors.password = "Must be 8 characters or more";
+    errors.password = "Must be at least 8 characters.";
   }
 
   return errors;
@@ -135,7 +135,7 @@ const Login = () => {
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
               />
               {error?.email && (
-                <p className="text-sm mt-1 mb-2 text-red-500">{error.email}</p>
+                <p className="text-sm mt-1 mb-2 text-gray-500">{error.email}</p>
               )}
             </div>
             <div className="space-y-3">
@@ -148,10 +148,15 @@ const Login = () => {
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary tracking-widest font-semibold text-black"
               />{" "}
               {error?.password && (
-                <p className="text-sm mt-1 mb-2 text-red-500">
+                <p className="text-sm mt-1 mb-2 text-gray-500">
                   {error.password}
                 </p>
               )}
+            </div>
+            <div>
+              <Link to={"/forgotPassword"} className=" hover:text-primary">
+                Forgot your password?
+              </Link>
             </div>
             <div>
               <button
