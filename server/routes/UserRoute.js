@@ -1,6 +1,7 @@
 import express from "express";
 import UserModel from "../model/User.js";
 import { verifyUser, verifyAdmin } from "../middleware/verifyToken.js";
+import nodemailer from "nodemailer";
 
 const UserRoute = express.Router();
 
@@ -73,6 +74,60 @@ UserRoute.delete("/:id", verifyUser, async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to delete",
+    });
+  }
+});
+
+// Forgot Password
+UserRoute.post("/forgotPassword", async (req, res) => {
+  const { email } = req.body;
+  const { otp } = req.body;
+
+  try {
+    const user = await UserModel.find({ email });
+
+    // If user doesn't exist
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Dont have an account please register first",
+      });
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Password Reset OTP",
+      text: `Your OTP for password reset is: ${otp}`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Failed to send OTP email",
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "OTP email sent successfully",
+      });
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 });

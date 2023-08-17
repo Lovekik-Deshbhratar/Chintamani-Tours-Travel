@@ -154,6 +154,9 @@ const Login = () => {
               )}
             </div>
             <div>
+              <Link className=" hover:text-primary">Forgot your password?</Link>
+            </div>
+            <div>
               <button
                 disabled={Object.keys(error).length > 0}
                 type="submit"
