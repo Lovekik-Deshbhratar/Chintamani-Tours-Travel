@@ -67,7 +67,7 @@ const Navbar = () => {
       type: "success",
       message: "Logout successfull",
     });
-    navigate("/");
+    navigate("/login");
   };
   return (
     <div className="py-4 bg-white shadow-md">

@@ -18,6 +18,9 @@ import { AuthContext } from "./Context/AuthContext";
 import roles from "./Util/roles";
 import ProtectedRoute from "./Util/ProtectedRoute";
 import { Router } from "lucide-react";
+import ForgotPassword from "./Pages/ForgotPassword";
+import OTPInput from "./Pages/OTPInput";
+import PasswordReset from "./Pages/PasswordReset";
 
 function App() {
   const { role } = useContext(AuthContext);
@@ -36,6 +39,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/tours/search" element={<SearchResult />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
+          <Route path="/optInput" element={<OTPInput />} />
+          <Route path="/passwordReset" element={<PasswordReset />} />
 
           {/* Route protected for User only */}
           <Route
