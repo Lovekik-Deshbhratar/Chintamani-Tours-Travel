@@ -73,7 +73,6 @@ UserRoute.post("/forgotPassword", async (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.log(error);
         return res.status(500).json({
           success: false,
           message: "Failed to send OTP email",

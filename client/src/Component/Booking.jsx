@@ -51,6 +51,14 @@ const Booking = ({ tour }) => {
     setError(validate({ ...booking, [name]: value }));
   };
 
+  const amountXprice =
+    price * (booking?.peopleSize === "" ? 1 : booking?.peopleSize);
+
+  const serviceCharges = 100;
+  const total =
+    price * (booking?.peopleSize === "" ? 1 : booking?.peopleSize) +
+    serviceCharges;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -72,13 +80,14 @@ const Booking = ({ tour }) => {
         booking.phone != "" ||
         booking.bookAt != ""
       ) {
+        const requestObj = { ...booking, total, serviceCharges, amountXprice };
         const res = await fetch(`${BASE_URL}/booking`, {
           method: "post",
           headers: {
             "content-type": "application/json",
           },
           credentials: "include",
-          body: JSON.stringify(booking),
+          body: JSON.stringify(requestObj),
         });
 
         const result = await res.json();
