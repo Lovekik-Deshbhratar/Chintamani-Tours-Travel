@@ -114,7 +114,7 @@ const PasswordReset = () => {
             name="confirmPassword"
             value={credentials.confirmPassword}
             onChange={handeleChange}
-            type="text"
+            type="password"
             className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
           />
           {error?.confirmPassword && (
