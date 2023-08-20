@@ -4,6 +4,7 @@ import { BASE_URL } from "../Util/config";
 import { NotificationContext } from "../Context/NotificationContext";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 const OTPInput = () => {
   const { forgotEmail, otp } = useContext(EmailAuthContext);
@@ -83,7 +84,12 @@ const OTPInput = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      viewport={{ once: true }}
+      className="h-screen flex justify-center"
+    >
       <form onSubmit={handleVerify}>
         <div className="bg-white px-5 py-10 w-[24rem] md:w-[26rem] h-fit rounded-xl shadow-xl mt-10">
           <div className="flex justify-center">
@@ -192,7 +198,7 @@ const OTPInput = () => {
           </div>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

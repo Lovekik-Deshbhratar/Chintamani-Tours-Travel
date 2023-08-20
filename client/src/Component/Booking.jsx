@@ -4,6 +4,7 @@ import { BASE_URL } from "../Util/config";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
+import { motion } from "framer-motion";
 
 const validate = (values) => {
   const errors = {};
@@ -107,7 +108,12 @@ const Booking = ({ tour }) => {
     }
   };
   return (
-    <div className="rounded-md border px-5 py-7 md:px-7 md:py-8 space-y-6 md:space-y-8 bg-white lg:w-[42%] xl:w-[30%] h-fit sticky top-0">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      viewport={{ once: true }}
+      className="rounded-md border px-5 py-7 md:px-7 md:py-8 space-y-6 md:space-y-8 bg-white lg:w-[42%] xl:w-[30%] h-fit sticky top-0"
+    >
       <div>
         <span className="flex items-center gap-1">
           <IndianRupee className="inline" size={22} />
@@ -207,7 +213,7 @@ const Booking = ({ tour }) => {
           Book Now
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

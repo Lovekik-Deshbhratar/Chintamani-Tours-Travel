@@ -3,6 +3,7 @@ import { BASE_URL } from "../../Util/config";
 import useFetch from "../../Hooks/useFetch";
 import { ChevronLeft, ChevronRight, PencilLine, Trash, X } from "lucide-react";
 import { NotificationContext } from "../../Context/NotificationContext";
+import { motion } from "framer-motion";
 
 const TourDatatable = () => {
   const [data, setData] = useState([]);
@@ -208,7 +209,11 @@ const TourDatatable = () => {
               </button>
             </div>
             <form onSubmit={handleEdit} autoComplete="off">
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+                className="grid grid-cols-1 gap-6 lg:grid-cols-2"
+              >
                 <div className="space-y-3 lg:col-span-2">
                   <h1 className="font-semibold text-gray-500">Tour Image</h1>
                   <img
@@ -308,7 +313,7 @@ const TourDatatable = () => {
                     Submit
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </form>
           </div>
         ) : (
@@ -326,7 +331,11 @@ const TourDatatable = () => {
               </thead>
               <tbody className="divide-y text-end">
                 {data.map((tour) => (
-                  <tr key={tour?._id}>
+                  <motion.tr
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+                    key={tour?._id}
+                  >
                     <td className="flex justify-end pl-4">
                       <img
                         src={tour?.photo}
@@ -359,7 +368,7 @@ const TourDatatable = () => {
                         <PencilLine />
                       </button>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
               <tfoot>

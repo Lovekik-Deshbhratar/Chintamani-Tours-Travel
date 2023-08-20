@@ -4,6 +4,7 @@ import { NotificationContext } from "../Context/NotificationContext";
 import { BASE_URL } from "../Util/config";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Key } from "lucide-react";
+import { motion } from "framer-motion";
 
 const validate = (values) => {
   const errors = {};
@@ -73,7 +74,12 @@ const ForgotPassword = () => {
     }
   };
   return (
-    <div className="h-screen flex justify-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      viewport={{ once: true }}
+      className="h-screen flex justify-center"
+    >
       <div className="bg-white px-5 py-10 w-[24rem] h-fit md:w-[26rem] rounded-xl shadow-xl mt-10">
         <div className="flex justify-center">
           <div className="w-16 h-16 bg-primary/5 flex justify-center items-center rounded-full">
@@ -126,7 +132,7 @@ const ForgotPassword = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

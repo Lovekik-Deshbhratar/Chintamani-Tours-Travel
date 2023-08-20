@@ -6,6 +6,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { BASE_URL } from "../../Util/config";
 import { NotificationContext } from "../../Context/NotificationContext";
+import { motion } from "framer-motion";
 
 const AdminAddTour = () => {
   const [image, setImage] = useState("");
@@ -43,7 +44,11 @@ const AdminAddTour = () => {
       <div className="flex md:min-h-screen">
         <AdminSidebar />
         {isSubmitted ? (
-          <div className="flex-grow bg-white">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+            className="flex-grow bg-white"
+          >
             <div className="flex flex-col items-center mt-[10rem] md:mt-[20rem] space-y-3">
               <div>
                 <h1 className="text-3xl capitalize">Tour is added</h1>
@@ -57,9 +62,13 @@ const AdminAddTour = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ) : (
-          <div className="px-10 py-8 flex-grow space-y-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+            className="px-10 py-8 flex-grow space-y-6"
+          >
             <div>
               <h1 className="text-lg md:text-xl lg:text-2xl font-semibold">
                 Add Tour
@@ -267,7 +276,7 @@ const AdminAddTour = () => {
                 </form>
               )}
             </Formik>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

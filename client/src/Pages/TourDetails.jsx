@@ -7,6 +7,7 @@ import { BASE_URL } from "../Util/config";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
 import Booking from "../Component/Booking";
+import { motion } from "framer-motion";
 
 const TourDetails = () => {
   let { id } = useParams();
@@ -118,13 +119,21 @@ const TourDetails = () => {
         <div className="px-7 py-4 space-y-6 lg:space-y-0 md:mx-[4%] xl:mx-[10%] my-9 lg:flex lg:gap-6">
           <div className="space-y-6 lg:w-[65%] xl::w-[68%] ">
             <div className="">
-              <img
+              <motion.img
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+                viewport={{ once: true }}
                 src={photo}
                 alt=""
                 className="rounded-md mb-11 w-full object-cover "
               />
             </div>
-            <div className="rounded-md border px-5 py-7 md:px-7 space-y-5 bg-white ">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              viewport={{ once: true }}
+              className="rounded-md border px-5 py-7 md:px-7 space-y-5 bg-white "
+            >
               <div className="space-y-3 md:space-y-4">
                 <h1 className="text-2xl md:text-3xl font-semibold">{title}</h1>
                 <span className="flex gap-2">
@@ -141,12 +150,22 @@ const TourDetails = () => {
                 </h1>
                 <p className="text-gray-600">{description}</p>
               </div>
-            </div>
+            </motion.div>
             <div className="space-y-8 rounded-md border px-5 py-7 md:px-7 md:py-8 bg-white">
-              <h1 className="text-2xl md:text-3xl font-semibold">
+              <motion.h1
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+                viewport={{ once: true }}
+                className="text-2xl md:text-3xl font-semibold"
+              >
                 Reviews ({reviews?.length})
-              </h1>
-              <div className="relative">
+              </motion.h1>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+                viewport={{ once: true }}
+                className="relative"
+              >
                 <button
                   onClick={handleReview}
                   className="absolute right-0 mt-1  mr-1 bottom- bg-secondary py-1 px-3  text-white rounded-full font-semibold hover:bg-primary transition-all ease-in-out duration-300 active:bg-[#fec595] active:scale-[0.9]"
@@ -160,10 +179,15 @@ const TourDetails = () => {
                   placeholder="Share your thoughts..."
                   className="w-full bg-primary/[0] ring-1 ring-secondary py-2 px-3 rounded-full caret-secondary outline-none"
                 />
-              </div>
+              </motion.div>
               <div className="px-1 space-y-6">
                 {reviews?.map((review, key) => (
-                  <div className=" flex gap-4" key={review?._id}>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+                    className=" flex gap-4"
+                    key={review?._id}
+                  >
                     <img
                       src="/Asset/avatar.jpg"
                       alt=""
@@ -181,7 +205,7 @@ const TourDetails = () => {
                       </h1>
                       <p className="mt-4 ">{review.reviewText}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>

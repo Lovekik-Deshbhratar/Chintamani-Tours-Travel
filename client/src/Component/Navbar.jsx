@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
+import { AnimatePresence, motion } from "framer-motion";
 
 const NavLinks = () => {
   return (
@@ -51,6 +52,28 @@ const NavLinks = () => {
   );
 };
 
+const containerVariants = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+  exit: { opacity: 0, scale: 0 },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: { y: 20, opacity: 0 },
+};
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -70,7 +93,11 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    <div className="py-4 bg-white shadow-md">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      className="py-4 bg-white shadow-md"
+    >
       <div className="md:flex md:justify-between md:max-lg:items-center md:mx-[2rem] lg:mx-[8rem] xl:mx-[15rem] md:space-y-4">
         <div className="flex justify-between px-4 md:p-0">
           <NavLink to={"/"}>
@@ -139,50 +166,61 @@ const Navbar = () => {
           </div>
         </div>
         {isOpen && (
-          <div className="absolute bg-white shadow-md py-4  md:hidden  w-full">
-            <div className="w-full mt-3">
-              <hr />
-            </div>
-            <div className="flex gap-5 flex-col items-end py-4 px-10">
-              {role === "admin" ? (
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primary text-xl hover:text-primary"
-                      : "text-red-600 font-semibold text-lg hover:text-primary"
-                  }
-                  to={"/adminDashboard"}
-                >
-                  Dashboard
-                </NavLink>
-              ) : null}
-              <NavLinks />
-            </div>
-            <div className="w-full px-10">
-              <hr />
-              <div className="flex flex-col items-end mt-4">
-                {user ? (
-                  <button className="text-gray-500 text-lg" onClick={Logout}>
-                    Logout
-                  </button>
-                ) : (
+          <AnimatePresence>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={containerVariants}
+              className="absolute bg-white shadow-md py-4 md:hidden w-full "
+            >
+              <div className="w-full mt-3">
+                <hr />
+              </div>
+              <motion.div
+                variants={itemVariants}
+                className="flex gap-5 flex-col items-end py-4 px-10"
+              >
+                {role === "admin" ? (
                   <NavLink
                     className={({ isActive }) =>
                       isActive
                         ? "text-primary text-xl hover:text-primary"
-                        : "text-gray-500 text-lg hover:text-primary"
+                        : "text-red-600 font-semibold text-lg hover:text-primary"
                     }
-                    to={"/login"}
+                    to={"/adminDashboard"}
                   >
-                    Login
+                    Dashboard
                   </NavLink>
-                )}
-              </div>
-            </div>
-          </div>
+                ) : null}
+                <NavLinks />
+              </motion.div>
+              <motion.div variants={itemVariants} className="w-full px-10">
+                <hr />
+                <div className="flex flex-col items-end mt-4">
+                  {user ? (
+                    <button className="text-gray-500 text-lg" onClick={Logout}>
+                      Logout
+                    </button>
+                  ) : (
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-primary text-xl hover:text-primary"
+                          : "text-gray-500 text-lg hover:text-primary"
+                      }
+                      to={"/login"}
+                    >
+                      Login
+                    </NavLink>
+                  )}
+                </div>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

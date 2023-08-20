@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "./Icon";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -25,17 +26,27 @@ const services = [
 const Services = () => {
   return (
     <div className="py-3 space-y-5">
-      <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
+      <motion.h1
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+        className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit"
+      >
         what we serve
-      </h1>
+      </motion.h1>
       <div className="md:flex md:flex-col lg::flex lg:flex-row xl:space-x-17 space-y-6 lg:space-y-0">
-        <span className="md:flex font-semibold text-3xl md:text-4xl capitalize ">
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          className="md:flex font-semibold text-3xl md:text-4xl capitalize "
+        >
           we offer our best services
-        </span>
+        </motion.span>
         <div className="space-y-7 grid grid-cols-1 md:grid-cols-3 md:space-y-0 md:gap-3 xl:gap-6 md:w-fit">
           {services.map((item, key) => {
             return (
-              <div
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
                 className="bg-white space-y-2 shadow-sm border-b border-r border-primary/40 py-2 px-4 rounded-md"
                 key={key}
               >
@@ -48,7 +59,7 @@ const Services = () => {
                 <p className="text-gray-500 text-base leading-7s">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
