@@ -113,7 +113,7 @@ const ForgotPassword = () => {
             onClick={handleSubmit}
             className="w-full bg-secondary text-white py-2 rounded-lg hover:bg-primary focus:bg-primary active:bg-[#fec595] active:scale-[0.97] transition-all ease-in-out duration-300 font-semibold mt-5 disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
-            Login
+            Send mail
           </button>
         </div>
         <div className="flex justify-center mt-10">
