@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 
 const feedback = [
   {
@@ -70,12 +71,20 @@ const Testimonial = () => {
   };
   return (
     <div className="py-3">
-      <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
+      <motion.h1
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+        className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit"
+      >
         Testimonialss
-      </h1>
-      <h1 className="font-semibold text-3xl md:text-4xl capitalize mt-3">
+      </motion.h1>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+        className="font-semibold text-3xl md:text-4xl capitalize mt-3"
+      >
         what our customer saying about us
-      </h1>
+      </motion.h1>
       <Slider {...settings} className="mt-10">
         {feedback.map((item, key) => (
           <div className="text-gray-800 p-6 md:p-8 space-y-6 " key={key}>

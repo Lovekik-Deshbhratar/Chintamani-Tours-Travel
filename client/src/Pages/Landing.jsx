@@ -8,6 +8,7 @@ import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import useFetch from "../Hooks/useFetch";
 import { BASE_URL } from "../Util/config";
+import { motion } from "framer-motion";
 
 const Landing = () => {
   const {
@@ -20,22 +21,38 @@ const Landing = () => {
     <>
       <Navbar />
       <div className="px-7 py-4 space-y-7 md:mx-[4%] xl:mx-[10%] mt-9">
-        <div className="grid grid-cols-1 md:gap-6 lg:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          className="grid grid-cols-1 md:gap-6 lg:grid-cols-2"
+        >
           <div className="space-y-6 md:mt-12">
-            <span className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit md:text-lg">
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit md:text-lg"
+            >
               know before you go
-            </span>
-            <h1 className="text-4xl capitalize font-semibold text-gray-800 tracking-wide leading-[2.8rem] md:text-5xl md:leading-[4rem]">
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              className="text-4xl capitalize font-semibold text-gray-800 tracking-wide leading-[2.8rem] md:text-5xl md:leading-[4rem]"
+            >
               traveling opens the door to creating{" "}
               <span className="text-primary">Memories</span>
-            </h1>
-            <p className="text-gray-500 text-base leading-7 md:text-lg">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              className="text-gray-500 text-base leading-7 md:text-lg"
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
               quibusdam ullam explicabo voluptas optio accusantium deserunt eum
               nulla reiciendis magnam necessitatibus qui dolorem, sit odit sint
               illo corrupti modi expedita porro dicta voluptatum? Doloribus
               aliquid, voluptate similique illum iusto provident.
-            </p>
+            </motion.p>
           </div>
           <div className="hidden lg:grid grid-cols-3 gap-7">
             <img
@@ -59,17 +76,25 @@ const Landing = () => {
               className="mt-[4.6rem] h-[24rem] object-cover ring-1 ring-primary rounded-3xl"
             />
           </div>
-        </div>
+        </motion.div>
         <Input />
         <div className="space-y-20 md:space-y-24 py-12 md:py-20">
           <Services />
           <div>
-            <h1 className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit">
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              className="tracking-wider py-1 px-3 capitalize rounded-full bg-primary/70 text-base font-parisienne w-fit h-fit"
+            >
               Explore
-            </h1>
-            <h1 className="font-semibold text-3xl md:text-4xl capitalize mt-3">
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              className="font-semibold text-3xl md:text-4xl capitalize mt-3"
+            >
               our upcoming tours
-            </h1>
+            </motion.h1>
             <div className="mt-14">
               {loading && <h1 className="text-xl">Loading...</h1>}
               {error && <h1 className="text-xl">{error}</h1>}

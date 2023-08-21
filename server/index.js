@@ -9,6 +9,7 @@ import ReviewRoute from "./routes/ReviewRoute.js";
 import BookingRoute from "./routes/BookingRoute.js";
 import cookieParser from "cookie-parser";
 import AdminRoute from "./routes/AdminRoute.js";
+import ContactRoute from "./routes/ContactRoute.js";
 
 // Server Creation
 const server = express();
@@ -38,6 +39,7 @@ server.use("/api/v1/users", UserRoute);
 server.use("/api/v1/review", ReviewRoute);
 server.use("/api/v1/booking", BookingRoute);
 server.use("/api/v1/admin", AdminRoute);
+server.use("/api/v1/contact", ContactRoute);
 
 // Server connection to port
 server.listen(port, () => {

@@ -1,10 +1,15 @@
 import { MapPin, Mail, Phone } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <div className="px-7 py-8 md:px-[4%] xl:px-[10%] space-y-8 bg-white shadow-md">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      className="px-7 py-8 md:px-[4%] xl:px-[10%] space-y-8 bg-white shadow-md"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-4 space-y-8 lg:space-y-0">
         <div className="md:max-lg:flex md:max-lg:justify-center">
           <img
@@ -75,7 +80,7 @@ const Footer = () => {
           <span className="text-primary">Chintamani Tours & Travels</span>
         </h1>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

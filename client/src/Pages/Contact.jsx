@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
+import { motion } from "framer-motion";
 
 const validate = (values) => {
   const errors = {};
@@ -51,11 +52,18 @@ const Contact = () => {
       <Navbar />
       <div className="flex flex-col items-center my-10">
         <h1 className="text-4xl text-gray-800">Contact Us</h1>
-        <span className="capitalize text-gray-700">
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          className="capitalize text-gray-700"
+        >
           Contact us if u have any query
-        </span>
+        </motion.span>
         <div className="lg:w-[40rem] flex flex-col gap-5 mt-14 w-full px-6 md:px-36 lg:px-0">
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          >
             <h1>Full Name *</h1>
             <input
               name="fullName"
@@ -69,8 +77,11 @@ const Contact = () => {
             {error?.fullName && (
               <p className="text-sm mt-1 mb-2 text-red-500">{error.fullName}</p>
             )}
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          >
             <h1>Phone *</h1>
             <input
               name="phone"
@@ -84,8 +95,11 @@ const Contact = () => {
             {error?.phone && (
               <p className="text-sm mt-1 mb-2 text-red-500">{error.phone}</p>
             )}
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          >
             <h1>Email address *</h1>
             <input
               name="email"
@@ -99,8 +113,11 @@ const Contact = () => {
             {error?.email && (
               <p className="text-sm mt-1 mb-2 text-red-500">{error.email}</p>
             )}
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+          >
             <h1>Message</h1>
             <textarea
               name="message"
@@ -113,13 +130,15 @@ const Contact = () => {
             {error?.message && (
               <p className="text-sm mt-1 mb-2 text-red-500">{error.message}</p>
             )}
-          </div>
-          <button
+          </motion.div>
+          <motion.button
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
             disabled={Object.keys(error).length > 0}
             className="mt-7 h-fit w-fit border border-secondary text-sm px-3 py-1.5 text-primary rounded-[0.2rem] hover:bg-secondary hover:text-white transition ease-in-out duration-500 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:border-gray-500 disabled:text-white"
           >
             Submit Form
-          </button>
+          </motion.button>
         </div>
       </div>
       <Footer />

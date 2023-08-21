@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { BASE_URL } from "../Util/config";
 import { NotificationContext } from "../Context/NotificationContext";
+import { motion } from "framer-motion";
 
 const validate = (values) => {
   const errors = {};
@@ -81,7 +82,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-screen md:flex md:justify-center md:items-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      viewport={{ once: true }}
+      className="h-screen md:flex md:justify-center md:items-center"
+    >
       <div className="px-7 py-16 md:px-0 md:py-0 md:w-[95%] md:h-[80%] lg:w-[80%] lg:h-[80%] xl:w-[60%] xl:h-[80%] md:flex md:bg-white md:rounded-3xl">
         <div className="hidden w-[40rem] bg-secondary my-4 ml-4 rounded-2xl md:flex text-white">
           <div className="py-12 px-10 md:space-y-16 2xl:space-y-[5.8rem]">
@@ -178,7 +184,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import Card from "../Component/Card";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SearchResult = () => {
   const location = useLocation();
@@ -17,9 +18,13 @@ const SearchResult = () => {
         <TourBackground title={"Tour Search Result"} />
         <div className="px-7 py-12 mb-24 space-y-16  md:mx-[4%] xl:mx-[10%]">
           {data.length == 0 ? (
-            <h1 className="text-3xl text-center font-semibold">
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+              className="text-3xl text-center font-semibold"
+            >
               No tour found
-            </h1>
+            </motion.h1>
           ) : (
             <Card data={data} />
           )}

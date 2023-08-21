@@ -3,6 +3,7 @@ import { Search, MapPin, Calendar } from "lucide-react";
 import { BASE_URL } from "../Util/config";
 import { useNavigate } from "react-router-dom";
 import { NotificationContext } from "../Context/NotificationContext";
+import { motion } from "framer-motion";
 
 const Input = () => {
   const [searchData, setSearchData] = useState({
@@ -49,7 +50,11 @@ const Input = () => {
     );
   };
   return (
-    <div className=" bg-white py-3 mt-6 px-2 md:px-5 rounded-lg shadow-lg xl:w-[63%]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
+      className=" bg-white py-3 mt-6 px-2 md:px-5 rounded-lg shadow-lg xl:w-[63%]"
+    >
       <div className="flex justify-between gap-3 md:gap-12 lg:gap-14">
         <div className="flex flex-col gap-4 flex-grow md:flex-row md:items-center">
           <div className="relative md:w-full">
@@ -83,7 +88,7 @@ const Input = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
