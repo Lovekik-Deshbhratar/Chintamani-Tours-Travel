@@ -33,8 +33,6 @@ const connect = async () => {
 server.use(cors(corsOptions));
 server.use(cookieParser());
 server.use(express.json({ limit: "50mb" }));
-
-// Main routes
 server.use("/api/v1/auth", AuthRoute);
 server.use("/api/v1/tours", TourRoute);
 server.use("/api/v1/users", UserRoute);
@@ -43,10 +41,6 @@ server.use("/api/v1/booking", BookingRoute);
 server.use("/api/v1/admin", AdminRoute);
 server.use("/api/v1/contact", ContactRoute);
 
-// Default route
-server.get("/", (req, res) => {
-  res.json({ message: "Working" });
-});
 // Server connection to port
 server.listen(port, () => {
   connect();
