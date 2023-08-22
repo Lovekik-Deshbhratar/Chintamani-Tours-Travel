@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NotificationContext } from "../Context/NotificationContext";
 import { Check, X, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
