@@ -22,7 +22,7 @@ const corsOptions = {
 // Mongoose to database connection
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.LOCAL_MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("Database Connected");
   } catch (error) {
     console.log("Database Connection Failure");

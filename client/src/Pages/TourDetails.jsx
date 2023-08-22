@@ -18,6 +18,9 @@ const TourDetails = () => {
   const [loading, setLoading] = useState(false);
   const { notificationHandler } = useContext(NotificationContext);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 5;
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -110,6 +113,14 @@ const TourDetails = () => {
     }
   };
 
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = reviews?.slice(indexOfFirstReview, indexOfLastReview);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <Navbar />
@@ -181,7 +192,7 @@ const TourDetails = () => {
                 />
               </motion.div>
               <div className="px-1 space-y-6">
-                {reviews?.map((review, key) => (
+                {currentReviews?.map((review, key) => (
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
@@ -207,6 +218,26 @@ const TourDetails = () => {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+              <div className="flex justify-center mt-6">
+                <ul className="flex space-x-2">
+                  {Array.from({
+                    length: Math.ceil(reviews?.length / reviewsPerPage),
+                  }).map((_, index) => (
+                    <li key={index}>
+                      <button
+                        onClick={() => paginate(index + 1)}
+                        className={`py-2 px-4 rounded-full font-semibold ${
+                          currentPage === index + 1
+                            ? "bg-secondary text-white"
+                            : "bg-white text-secondary ring ring-secondary"
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
