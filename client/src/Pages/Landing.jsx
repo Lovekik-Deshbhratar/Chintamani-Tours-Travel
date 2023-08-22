@@ -7,7 +7,7 @@ import Testimonial from "../Component/Testimonial";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import useFetch from "../Hooks/useFetch";
-import { BASE_URL } from "../Util/config";
+import { BASE_URL } from "../util/config";
 import { motion } from "framer-motion";
 
 const Landing = () => {

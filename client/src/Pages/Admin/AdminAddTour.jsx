@@ -4,7 +4,7 @@ import AdminSidebar from "../../Component/Admin/AdminSidebar";
 import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { BASE_URL } from "../../Util/config";
+import { BASE_URL } from "../../util/config";
 import { NotificationContext } from "../../Context/NotificationContext";
 import { motion } from "framer-motion";
 

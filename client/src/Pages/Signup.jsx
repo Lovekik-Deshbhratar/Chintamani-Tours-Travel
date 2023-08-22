@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-import { BASE_URL } from "../Util/config";
+import { BASE_URL } from "../util/config";
 import { NotificationContext } from "../Context/NotificationContext";
 import { motion } from "framer-motion";
 

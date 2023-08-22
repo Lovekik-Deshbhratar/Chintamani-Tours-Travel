@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import EmailAuthContext from "../Context/EmailAuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
-import { BASE_URL } from "../Util/config";
+import { BASE_URL } from "../util/config";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Key } from "lucide-react";
 import { motion } from "framer-motion";

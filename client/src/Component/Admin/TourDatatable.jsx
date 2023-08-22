@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BASE_URL } from "../../Util/config";
+import { BASE_URL } from "../../util/config";
 import useFetch from "../../Hooks/useFetch";
 import { ChevronLeft, ChevronRight, PencilLine, Trash, X } from "lucide-react";
 import { NotificationContext } from "../../Context/NotificationContext";

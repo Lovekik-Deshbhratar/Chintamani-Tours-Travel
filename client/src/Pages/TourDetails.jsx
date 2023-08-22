@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { IndianRupee, MapPin } from "lucide-react";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
-import { BASE_URL } from "../Util/config";
+import { BASE_URL } from "../util/config";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
 import Booking from "../Component/Booking";

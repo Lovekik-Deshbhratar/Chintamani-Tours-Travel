@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Search, MapPin, Calendar } from "lucide-react";
-import { BASE_URL } from "../Util/config";
+import { BASE_URL } from "../util/config";
 import { useNavigate } from "react-router-dom";
 import { NotificationContext } from "../Context/NotificationContext";
 import { motion } from "framer-motion";

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { IndianRupee } from "lucide-react";
-import { BASE_URL } from "../Util/config";
+import { BASE_URL } from "../util/config";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { NotificationContext } from "../Context/NotificationContext";
