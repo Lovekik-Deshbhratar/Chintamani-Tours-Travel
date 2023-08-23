@@ -100,16 +100,20 @@ export const login = async (req, res) => {
         { expiresIn: "15d" }
       );
 
+      const cookieOptions = {
+        expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+      };
+
       // Set token in the browser cookies and send responce to the client
       res
-        .cookie("accessToken", token, {
-          httpOnly: true,
-          expires: token.expiresIn,
-        })
+        .cookie("accessToken", token, cookieOptions)
         .status(200)
         .json({
           token,
-          message: "Login successfull",
+          message: "Login successful",
           data: { ...rest },
           role,
         });
