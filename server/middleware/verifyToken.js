@@ -5,7 +5,7 @@ export const verifyToken = (req, res, next) => {
   if (!token) {
     return res
       .status(401)
-      .json({ success: false, message: "You're not authorize" });
+      .json({ success: false, message: "You're not authorize, token missing" });
   }
 
   // If token is exist then verify the token
@@ -22,7 +22,7 @@ export const verifyToken = (req, res, next) => {
 };
 
 export const verifyUser = (req, res, next) => {
-  verifyToken(req, res, () => {
+  verifyToken(req, res, next, () => {
     if (req.user.id == req.params.id || req.user.role == "admin") {
       next();
     } else {
@@ -40,7 +40,7 @@ export const verifyAdmin = (req, res, next) => {
     } else {
       return res
         .status(401)
-        .json({ success: false, message: "You're not authorize" });
+        .json({ success: false, message: "You're not authorize admin" });
     }
   });
 };
