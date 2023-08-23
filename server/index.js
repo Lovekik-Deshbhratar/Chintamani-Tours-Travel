@@ -30,7 +30,6 @@ const connect = async () => {
 };
 
 // Middleware
-server.set("trust proxy", 1);
 server.use(cors(corsOptions));
 server.use(cookieParser());
 server.use(express.json({ limit: "50mb" }));
