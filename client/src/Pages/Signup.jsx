@@ -139,9 +139,15 @@ const Signup = () => {
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
               />{" "}
               {error?.username && (
-                <p className="text-sm mt-1 mb-2 text-gray-500">
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-sm mt-1 mb-2 text-gray-500"
+                >
                   {error.username}
-                </p>
+                </motion.p>
               )}
             </div>
             <div className="space-y-3">
@@ -154,7 +160,15 @@ const Signup = () => {
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary font-semibold text-black"
               />
               {error?.email && (
-                <p className="text-sm mt-1 mb-2 text-gray-500">{error.email}</p>
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-sm mt-1 mb-2 text-gray-500"
+                >
+                  {error.email}
+                </motion.p>
               )}
             </div>
             <div className="space-y-3">
@@ -167,9 +181,15 @@ const Signup = () => {
                 className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary tracking-widest font-semibold text-black"
               />
               {error?.password && (
-                <p className="text-sm mt-1 mb-2 text-gray-500">
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-sm mt-1 mb-2 text-gray-500"
+                >
                   {error.password}
-                </p>
+                </motion.p>
               )}
             </div>
             <div>

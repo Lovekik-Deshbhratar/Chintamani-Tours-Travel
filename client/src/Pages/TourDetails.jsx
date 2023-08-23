@@ -124,8 +124,10 @@ const TourDetails = () => {
   return (
     <>
       <Navbar />
-      {loading && <h1 className="text-xl">Loading...</h1>}
-      {error && <h1 className="text-xl">{error}</h1>}
+      {loading && (
+        <h1 className="text-xl pt-32 text-center h-screen">Loading...</h1>
+      )}
+      {error && <h1 className="text-xl pt-32 text-center">{error}</h1>}
       {!loading && !error && (
         <div className="px-7 py-4 space-y-6 lg:space-y-0 md:mx-[4%] xl:mx-[10%] my-9 lg:flex lg:gap-6">
           <div className="space-y-6 lg:w-[65%] xl::w-[68%] ">
@@ -241,7 +243,7 @@ const TourDetails = () => {
               </div>
             </div>
           </div>
-          <Booking tour={data} />
+          <Booking tour={data} tourId={data._id} />
         </div>
       )}
       <Footer />

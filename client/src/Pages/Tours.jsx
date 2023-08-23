@@ -31,8 +31,10 @@ const Tours = () => {
         <TourBackground title={"All Tours"} />
         <div className="px-7 py-12 space-y-16  md:mx-[4%] xl:mx-[10%]">
           <Input />
-          {loading && <h1 className="text-xl">Loading...</h1>}
-          {error && <h1 className="text-xl">{error}</h1>}
+          {loading && (
+            <h1 className="text-xl text-center h-screen">Loading...</h1>
+          )}
+          {error && <h1 className="text-xl text-center">{error}</h1>}
           {!loading && !error && (
             <>
               <Card data={tours} />

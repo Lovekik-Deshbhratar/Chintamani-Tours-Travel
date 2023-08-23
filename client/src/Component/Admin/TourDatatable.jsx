@@ -197,8 +197,8 @@ const TourDatatable = () => {
           </h1>
         </div>
       )}
-      {loading && <h1 className="text-xl text-center">Loading...</h1>}
-      {error && <h1 className="text-xl">{error}</h1>}
+      {loading && <h1 className="text-xl text-center mt-20">Loading...</h1>}
+      {error && <h1 className="text-xl text-center">{error}</h1>}
       {!loading &&
         !error &&
         (showForm ? (

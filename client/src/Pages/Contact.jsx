@@ -75,7 +75,15 @@ const Contact = () => {
               placeholder="name"
             />
             {error?.fullName && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.fullName}</p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
+                {error.fullName}
+              </motion.p>
             )}
           </motion.div>
           <motion.div
@@ -93,7 +101,15 @@ const Contact = () => {
               placeholder="mobile number"
             />
             {error?.phone && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.phone}</p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
+                {error.phone}
+              </motion.p>
             )}
           </motion.div>
           <motion.div
@@ -111,7 +127,15 @@ const Contact = () => {
               placeholder="name@example.com"
             />
             {error?.email && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.email}</p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
+                {error.email}
+              </motion.p>
             )}
           </motion.div>
           <motion.div
@@ -128,7 +152,15 @@ const Contact = () => {
               rows={4}
             ></textarea>
             {error?.message && (
-              <p className="text-sm mt-1 mb-2 text-red-500">{error.message}</p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
+                {error.message}
+              </motion.p>
             )}
           </motion.div>
           <motion.button

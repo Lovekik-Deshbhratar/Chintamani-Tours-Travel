@@ -96,8 +96,10 @@ const Landing = () => {
               our upcoming tours
             </motion.h1>
             <div className="mt-14">
-              {loading && <h1 className="text-xl">Loading...</h1>}
-              {error && <h1 className="text-xl">{error}</h1>}
+              {loading && (
+                <h1 className="text-xl text-center h-[30rem]">Loading...</h1>
+              )}
+              {error && <h1 className="text-xl text-center">{error}</h1>}
               {!loading && !error && <Card data={latestTours} />}
             </div>
           </div>

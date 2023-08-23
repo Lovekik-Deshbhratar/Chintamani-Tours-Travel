@@ -164,9 +164,15 @@ const AdminAddTour = () => {
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary  text-black"
                       />
                       {formik.touched.title && formik.errors.title ? (
-                        <p className="text-sm mt-1 mb-2 text-red-500">
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-sm mt-1 mb-2 text-gray-500"
+                        >
                           {formik.errors.title}
-                        </p>
+                        </motion.p>
                       ) : null}
                     </div>
                     <div className="space-y-3">
@@ -182,9 +188,15 @@ const AdminAddTour = () => {
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary  text-black"
                       />
                       {formik.touched.location && formik.errors.location ? (
-                        <p className="text-sm mt-1 mb-2 text-red-500">
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-sm mt-1 mb-2 text-gray-500"
+                        >
                           {formik.errors.location}
-                        </p>
+                        </motion.p>
                       ) : null}
                     </div>
                     <div className="space-y-3">
@@ -200,9 +212,15 @@ const AdminAddTour = () => {
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 py-2.5 px-4 focus:ring-1 focus:ring-secondary  "
                       />
                       {formik.touched.date && formik.errors.date ? (
-                        <p className="text-sm mt-1 mb-2 text-red-500">
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-sm mt-1 mb-2 text-gray-500"
+                        >
                           {formik.errors.date}
-                        </p>
+                        </motion.p>
                       ) : null}
                     </div>
                     <div className="space-y-3">
@@ -218,9 +236,15 @@ const AdminAddTour = () => {
                         className="w-full outline-none rounded-md ring-1 ring-gray-300 caret-secondary py-2.5 px-4 focus:ring-1 focus:ring-secondary  text-black"
                       />
                       {formik.touched.price && formik.errors.price ? (
-                        <p className="text-sm mt-1 mb-2 text-red-500">
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-sm mt-1 mb-2 text-gray-500"
+                        >
                           {formik.errors.price}
-                        </p>
+                        </motion.p>
                       ) : null}
                     </div>
                     <div className="space-y-3 lg:col-span-2">
@@ -237,9 +261,15 @@ const AdminAddTour = () => {
                       />
                       {formik.touched.description &&
                       formik.errors.description ? (
-                        <p className="text-sm mt-1 mb-2 text-red-500">
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-sm mt-1 mb-2 text-gray-500"
+                        >
                           {formik.errors.description}
-                        </p>
+                        </motion.p>
                       ) : null}
                     </div>
                     <div className="space-y-3">

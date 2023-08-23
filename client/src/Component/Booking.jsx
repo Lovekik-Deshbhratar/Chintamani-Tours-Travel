@@ -10,7 +10,7 @@ const validate = (values) => {
   const errors = {};
   if (!values.fullName) {
     errors.fullName = "This is a required field";
-  } else if (values.fullName.length < 15) {
+  } else if (values.fullName.length < 10) {
     errors.fullName = "Must be 15 characters or more";
   }
 
@@ -22,12 +22,18 @@ const validate = (values) => {
 
   if (!values.bookAt) {
     errors.bookAt = "This is a required field";
+  } else {
+    const currentDate = new Date();
+    const selectedDate = new Date(values.bookAt);
+    if (selectedDate <= currentDate) {
+      errors.bookAt = "Please select a date greater than the current date";
+    }
   }
 
   return errors;
 };
 
-const Booking = ({ tour }) => {
+const Booking = ({ tour, tourId }) => {
   const { price, title } = tour;
   const navigate = useNavigate();
   const { user, role } = useContext(AuthContext);
@@ -126,7 +132,10 @@ const Booking = ({ tour }) => {
       <hr />
       <div className="space-y-6">
         <h1 className="text-xl md:text-2xl font-semibold">Infornation</h1>
-        <div className="grid grid-cols-2 border px-3 pt-3 pb-6 gap-4">
+        <motion.div
+          layout
+          className="grid grid-cols-2 border px-3 pt-3 pb-6 gap-4"
+        >
           <div className="col-span-2">
             <input
               name="fullName"
@@ -137,9 +146,15 @@ const Booking = ({ tour }) => {
               className="border-b w-full outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
             />
             {error?.fullName && (
-              <p className="text-sm mt-1 mb-2 text-gray-500">
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
                 {error.fullName}
-              </p>
+              </motion.p>
             )}
           </div>
 
@@ -151,9 +166,17 @@ const Booking = ({ tour }) => {
               type="text"
               placeholder="Phone *"
               className=" border-b w-full outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
-            />{" "}
+            />
             {error?.phone && (
-              <p className="text-sm mt-1 mb-2 text-gray-500">{error.phone}</p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
+                {error.phone}
+              </motion.p>
             )}
           </div>
           <div>
@@ -165,7 +188,15 @@ const Booking = ({ tour }) => {
               className="border-b outline-none h-11 px-3 focus:border-black caret-secondary  text-gray-600 bg-primary/[0]"
             />
             {error?.bookAt && (
-              <p className="text-sm mt-1 mb-2 text-gray-500">{error.bookAt}</p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm mt-1 mb-2 text-gray-500"
+              >
+                {error.bookAt}
+              </motion.p>
             )}
           </div>
           <input
@@ -176,7 +207,7 @@ const Booking = ({ tour }) => {
             placeholder="No. of People"
             className="border-b outline-none h-11 px-3 focus:border-black caret-secondary focus:placeholder-black bg-primary/[0]"
           />
-        </div>
+        </motion.div>
         <div className="space-y-5 md:space-y-6">
           <div className="flex justify-between md:text-lg text-gray-700">
             <span className="flex items-center gap-1">
