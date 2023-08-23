@@ -103,9 +103,9 @@ export const login = async (req, res) => {
       // Set token in the browser cookies and send responce to the client
       res
         .cookie("accessToken", token, {
+          secure: true,
           httpOnly: true,
           expires: token.expiresIn,
-          secure: true,
         })
         .status(200)
         .json({
