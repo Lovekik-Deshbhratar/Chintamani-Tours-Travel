@@ -9,6 +9,7 @@ module.exports = {
       },
       fontFamily: {
         parisienne: ["Parisienne, cursive"],
+        opensans: "Open Sans",
       },
       animation: {
         "up-down": "up-down 2s ease-in-out infinite alternate-reverse both",

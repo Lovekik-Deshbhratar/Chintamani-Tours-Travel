@@ -28,7 +28,7 @@ function App() {
       <div className="flex justify-center">
         <Notification />
       </div>
-      <div className="w-full bg-primary/5 selection:bg-primary/10 selection:text-primary/75">
+      <div className="w-full bg-primary/5 selection:bg-primary/10 selection:text-primary/75 font-opensans">
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
